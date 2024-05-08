@@ -4,7 +4,7 @@ import Sidebar from './Sidebar'
 
 const SidebarButton = ({ onClick }) => {
   return (
-    <button className='block sm:inline md:inline lg:hidden xl:hidden' onClick={onClick}>
+    <button className='block sm:inline md:hidden lg:hidden xl:hidden' onClick={onClick}>
       <AlignJustify />
 
 

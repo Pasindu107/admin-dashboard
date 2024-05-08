@@ -8,8 +8,8 @@ import SidebarButton from './SidebarButton'
 const Header = () => {
   return (
     <div className='flex justify-between bg-white text-black p-4 rounded-[8px]'>
-      {/* <SidebarButton /> */}
-      <div className='block sm:hidden md:hidden lg:inline xl:inline'></div>
+      <SidebarButton />
+      <div className='block sm:hidden md:inline lg:inline xl:inline'></div>
         <div className=''>
            <UserItem />
         </div>
