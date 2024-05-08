@@ -1,0 +1,22 @@
+'use client';
+
+import React from 'react'
+
+const UserItem = () => {
+  return (
+    <div className='flex items-center gap-2 '>
+        {/* <div className=''>
+            <p className='text-[16px] font-bold'>Pasindu Bhanuka</p>
+            <p className='text-[12px] text-neutral-500'>abcdef@gmail.com</p>
+        </div> */}
+        <div className='avatar rounded-full min-h-10 min-w-10 bg-black text-white font-[700]
+        flex items-center justify-center'>
+            <p>PB</p>
+        </div>
+
+      
+    </div>
+  )
+}
+
+export default UserItem
