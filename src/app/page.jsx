@@ -5,12 +5,12 @@ import Pagename from "../components/Pagename";
 import UserItem from "../components/UserItem";
 
 
-export default function Home() {
+export default function Home(props) {
   return (
     <main>
     <div className="p-4">
 
-    <Pagename name="DASHBOARD" />
+    
   
   
     </div>

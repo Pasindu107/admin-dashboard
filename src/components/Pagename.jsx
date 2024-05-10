@@ -3,7 +3,7 @@ import React from 'react'
 const Pagename = (props) => {
   return (
     <div>          
-        {props.name}
+       
     </div>
   )
 }
