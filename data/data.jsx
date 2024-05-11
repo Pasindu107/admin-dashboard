@@ -114,10 +114,12 @@
 //   console.error('Error:', error); // Handle  
 // });
 
-import axios from 'axios';
+import React, { useState } from 'react';
 
-export default function data({ data }) {
-    // Make authenticated request to protected route
+export default function Data() {
+    const [userData, setUserData] = useState(null);
+
+
     const fetchData = async () => {
         try {
             // const token = localStorage.getItem('eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6IlBhc2luZHUiLCJpYXQiOjE3MTQxOTY5MDMsImV4cCI6MzE3MjU4NjM5MzAzfQ.y02Y0qtvBQL1AzBTO1KdDIV0PiC-qk4k0-RQW_fz_hA');
@@ -143,6 +145,20 @@ export default function data({ data }) {
     };
 
     return (
-      <button onClick={fetchData}>Fetch Protected Data</button>
+          <div>
+            <button onClick={fetchData}>Fetch Protected Data</button>
+            {userData && (
+                <div>
+                    {/* Render your fetched data here */}
+                    {userData.map((item, index) => (
+                        <div key={index}>
+                            <h3>{item.ItemName}</h3>
+                            <p>{item.Item_Code}</p>
+                            <p>{item.SoldDate}</p>
+                        </div>
+                    ))}
+                </div>
+            )}
+        </div>
     );
 }

@@ -9,10 +9,8 @@ export default function Home(props) {
   return (
     <main>
     <div className="p-4">
-
+      Dashboard
     
-  
-  
     </div>
   
     </main>

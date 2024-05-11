@@ -1,46 +1,124 @@
-'use client';
+'use client'
 
-import DataList, { data } from '@/data/data';
-// import {
-//     Table,
-//     TableBody,
-//     TableCaption,
-//     TableCell,
-//     TableHead,
-//     TableHeader,
-//     TableRow,
-//   } from "@/components/ui/table"
-// import Link from "next/link";
+import {
+  Table,
+  TableBody,
+  TableCaption,
+  TableCell,
+  TableHead,
+  TableHeader,
+  TableRow,
+} from "@/components/ui/table"
 
-import React from 'react'
+import React, { useEffect, useState } from 'react';
 
-const page = () => {
-  return (
-    <div className="flex flex-col">
-      
-        {/* <div className="p-4">
-            ITEMS
-        </div>
-        <div className="w-full m-auto p-4 boder rounded-lg bg-purple-200 overflow-y-auto">
-            <div className="my-3 grid md:grid-cols-4 sm:grid-cols-3">
-              <span>Name</span>
-              <span>Email</span>
-              <span>Last Order</span>
-              <span>Quantity</span>
+// Function to fetch data from the API
+const fetchData = async () => {
+    try {
+        const response = await fetch(
+            "http://localhost:8000/item/outofstock?supCode=023"
+        );
+        const data = await response.json();
+        return data.Data;
+    } catch (error) {
+        console.error(error);
+        return [];
+    } 
+};
+
+// Component
+export default function Data() {
+    const [data, setData] = useState([]);
+
+    // Fetch data when the component mounts
+    useEffect(() => {
+        const fetchDataAndSetData = async () => {
+            const newData = await fetchData();
+            setData(newData);
+        };
+        fetchDataAndSetData();
+    }, []);
+
+    // Render fetched data in a table
+    return (
+        <div className='p-4'>
+          <div className='w-full m-auto p-4 rounded-lg bg-white overflow-y-auto'>
+            <div className='bg-purple-200 my-3 pl-4  p-4 grid md:grid-cols-3 sm:grid-cols-2 items-center border border-purple-200 rounded-lg '>
+                <span>Item Code</span>
+                <span className='sm:text-left text-right'>Sold Date</span>
+                <span className='hidden md:grid'>Item Name</span>
             </div>
-        </div>
-        <ul>
-          {data.map((order, id) => (
-            <li key={id} className='bg-gray-50 hover:bg-purple-100 rounded-lg my-3 p-2  grid md:grid-cols-4 sm:grid-cols-3 grid-cols-2 items-center justify-between cursor-pointer'> 
-              <div>
-                <p>{order.name.first + ' ' + order.name.last}</p>
-              </div>
-            </li>
-          ))}
-        </ul> */}
-    <DataList />
-    </div>
-  )
-}
+          <ul>
+          {data.map((item, index) => (
+                        <li key={index} className='bg-gray-50 hover:bg-gray-100 rounded-lg my-3 p-2 grid md:grid-cols-3 sm:grid-cols-2  items-center justify-between cursor-pointer'>
+                            <p className='pl-4 text-gray-600 sm:text-left text-right'>{item.Item_Code}</p>
+                            <p className='hidden md:flex'>{item.SoldDate}</p>
+                            <p>{item.ItemName}</p>
+                        </li>
+                    ))}
+          </ul>
 
-export default page
+          </div>
+   
+          {/* <Table>
+  <TableCaption></TableCaption>
+  <TableHeader>
+    <TableRow classname="grid grid-cols-3 gap-4 content-start">
+      <TableHead className="w-[100px]">Item Code</TableHead>
+      <TableHead className="justify-center">Sold Date</TableHead>      
+      <TableHead className="text-right">Item Name</TableHead>
+    </TableRow>
+  </TableHeader>
+
+  <TableBody>
+  {data.map((item, index) => (
+    <TableRow key={index}>
+      <TableCell className="font-medium">{item.Item_Code}</TableCell>
+      <TableCell>{item.SoldDate}</TableCell>
+      <TableCell className="text-right">{item.ItemName}</TableCell>
+    </TableRow>
+      ))}
+  </TableBody>
+</Table> */}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+         
+            {/* <table>
+                <thead className='flex p-4'>
+                    <tr className='flex flex-row'>
+                        <th>Item Code</th>
+                        <th>Sold Date</th>
+                        <th>Item Name</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {data.map((item, index) => (
+                        <tr key={index}>
+                            <td>{item.Item_Code}</td>
+                            <td>{item.SoldDate}</td>
+                            <td>{item.ItemName}</td>
+                        </tr>
+                    ))}
+                </tbody>
+            </table> */}
+        </div>
+    );
+}
