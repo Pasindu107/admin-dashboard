@@ -132,13 +132,13 @@ export default function Data() {
             //     }
             
             // });
+
             const response = await fetch(
               "http://localhost:8000/item/outofstock?supCode=023"
             );
             const userData = await response.json();
             // return userData;
 
-            console.log(userData.data);
         } catch (error) {
             console.error(error);
         }
