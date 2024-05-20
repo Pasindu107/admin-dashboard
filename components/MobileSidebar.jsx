@@ -41,6 +41,7 @@ const MobileSidebar = () => {
             </div>  
           </div> 
         </Link> 
+<<<<<<< HEAD:components/MobileSidebar.jsx
         <Link href={"/supplier"}>
           <div className='gap-4 px-2 py-3  hover:bg-purple-200 rounded-lg my-3 p-2 flex items-center grow cursor-pointer'>
             <ListChecks /> 
@@ -50,6 +51,8 @@ const MobileSidebar = () => {
           </div> 
         </Link> 
 
+=======
+>>>>>>> 4049284803659ca57124c185d9be6742e66a6c45:src/components/MobileSidebar.jsx
     </div>
   )
 }
