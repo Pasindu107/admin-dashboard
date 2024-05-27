@@ -11,7 +11,7 @@ const Sidebar = () => {
 
     
     <div className='relative flex-col hidden sm:hidden md:block lg:block xl:block lg:min-w-[300px] xl:min-w-[300px] border-r min-h-full p-4 bg-white rounded-[10px]'>
-        <div className='text-[25px] min-h-[100px] p-4'>
+        <div className='text-[25px] min-h-[  100px] p-4'>
           ADMIN PANEL
         </div>
         <Link href={"/"}>
@@ -58,4 +58,4 @@ const Sidebar = () => {
   )
 }
  
-export default Sidebar
+export default Sidebar 

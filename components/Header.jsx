@@ -101,7 +101,7 @@ const Header = () => {
           : "fixed left-[-100%] top-0 p-10 ease-in duration-500"
       }>
 
-        <div onClick={handleNav}><MobileSidebar /></div>
+        <div onClick={handleNav} ><MobileSidebar /></div>
         
       </div>
         
