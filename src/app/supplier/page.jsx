@@ -11,32 +11,8 @@ import {
 } from "@/components/ui/table";
 import Link from "next/link";
 import React, { useEffect, useState } from "react";
-import FTP from 'ftp';
-import fs from 'fs';
 
-// Function to download images from FTP server
-const downloadImageFromFTP = (imageName) => {
-  const ftp = new FTP();
-  const ftpOptions = {
-      host: 'ftp.heptagonss.com',
-      user: 'uploadheptagon',
-      password: 'o5c219Px#'
-  };
 
-  ftp.connect(ftpOptions);
-
-  ftp.on('ready', () => {
-      ftp.get(`/images/${imageName}`, (err, stream) => {
-          if (err) {
-              console.error('Error downloading image:', err);
-              return;
-          }
-
-          stream.once('close', () => ftp.end());
-          stream.pipe(fs.createWriteStream(`downloaded_images/${imageName}`)); // Change the path where you want to save the downloaded image
-      });
-  });
-};
 
 // Function to fetch data from the API
 const fetchData = async () => {
@@ -153,7 +129,6 @@ export default function Data() {
         break;
       case "BankInfor":
         responseMessage = `Bank Info is: ${item.BankInfor}`;
-        downloadImageFromFTP(imageName);
 
         break;
       case "InsertDate":
