@@ -2,8 +2,8 @@ import React from 'react'
 
 const page = () => {
   return (
-    <div>
-      Login
+    <div className='p-4'>
+      Profile
     </div>
   )
 }

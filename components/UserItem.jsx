@@ -10,6 +10,7 @@ import {
   DropdownMenuSeparator,
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu"
+import Link from 'next/link';
 
 
 
@@ -32,8 +33,8 @@ const UserItem = () => {
           <DropdownMenuContent>
             <DropdownMenuLabel>My Account</DropdownMenuLabel>
             <DropdownMenuSeparator />
-            <DropdownMenuItem>Profile</DropdownMenuItem>
-            <DropdownMenuItem>Settings</DropdownMenuItem>
+            <DropdownMenuItem><Link href={'/profile'}>Profile</Link></DropdownMenuItem>
+            <Link href={'/login'} className='cursor-pointer'><DropdownMenuItem>Logout</DropdownMenuItem></Link>
  
           </DropdownMenuContent>
         </DropdownMenu>

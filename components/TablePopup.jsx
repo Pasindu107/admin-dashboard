@@ -13,8 +13,8 @@ import {
   import React from 'react'
   
   const TablePopup = (props) => {
-    const { openPopup, closePopup} = props;
-
+    const { openPopup, closePopup, data } = props;
+    if (!openPopup) return null;
     const zzzz = () => {
       closePopup();
     }
@@ -28,13 +28,15 @@ import {
           <AlertDialogHeader>
           <AlertDialogTitle>Supplier Details</AlertDialogTitle>
           <AlertDialogDescription>
-              This action cannot be undone. This will permanently delete your account
-              and remove your data from our servers.
+
+                <h2>Company type</h2>
+                <p className="p-4 text-[20px]">{data}</p>
+
           </AlertDialogDescription>
           </AlertDialogHeader>
           <AlertDialogFooter>
           <AlertDialogCancel onClick={() => zzzz()}>Cancel</AlertDialogCancel>
-          <AlertDialogAction>Continue</AlertDialogAction>
+          {/* <AlertDialogAction>Continue</AlertDialogAction> */}
           </AlertDialogFooter>
       </AlertDialogContent>
       </AlertDialog>

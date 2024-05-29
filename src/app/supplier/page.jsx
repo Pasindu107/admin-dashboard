@@ -11,6 +11,32 @@ import {
 } from "@/components/ui/table";
 import Link from "next/link";
 import React, { useEffect, useState } from "react";
+import FTP from 'ftp';
+import fs from 'fs';
+
+// Function to download images from FTP server
+const downloadImageFromFTP = (imageName) => {
+  const ftp = new FTP();
+  const ftpOptions = {
+      host: 'ftp.heptagonss.com',
+      user: 'uploadheptagon',
+      password: 'o5c219Px#'
+  };
+
+  ftp.connect(ftpOptions);
+
+  ftp.on('ready', () => {
+      ftp.get(`/images/${imageName}`, (err, stream) => {
+          if (err) {
+              console.error('Error downloading image:', err);
+              return;
+          }
+
+          stream.once('close', () => ftp.end());
+          stream.pipe(fs.createWriteStream(`downloaded_images/${imageName}`)); // Change the path where you want to save the downloaded image
+      });
+  });
+};
 
 // Function to fetch data from the API
 const fetchData = async () => {
@@ -39,7 +65,7 @@ const fetchData = async () => {
 export default function Data() {
   const [data, setData] = useState([]);
   const [addPopup, setAddPopup] = useState(false);
-  //const [offPopup, setoffPopup] = useState(true);
+  const [popupData, setPopupData] = useState(null);
 
   // Fetch data when the component mounts
   useEffect(() => {
@@ -60,11 +86,13 @@ export default function Data() {
         break;
       case "CompanyType":
         //responseMessage = `Company Type is: ${item.CompanyType}`;
+        setPopupData(item[fieldName]);
         setAddPopup(true);
         //setoffPopup(false);
         break;
       case "SupplierName":
-        responseMessage = `Supplier Name is: ${item.SupplierName}`;
+        setPopupData(item[fieldName]);
+        setAddPopup(true);
         break;
       case "AuthorizedPerson":
         responseMessage = `Authorized Person is: ${item.AuthorizedPerson}`;
@@ -125,12 +153,16 @@ export default function Data() {
         break;
       case "BankInfor":
         responseMessage = `Bank Info is: ${item.BankInfor}`;
+        downloadImageFromFTP(imageName);
+
         break;
       case "InsertDate":
         responseMessage = `Insert Date is: ${item.InsertDate}`;
         break;
       default:
         responseMessage = `Clicked on: ${fieldName}`;
+        setPopupData(null); // Clear the data if popup is closed
+        setAddPopup(false); // Close the popup for all other cell clicks
     }
     
   };
@@ -170,7 +202,7 @@ export default function Data() {
 
       
         <div>
-            <TablePopup openPopup={addPopup} closePopup={setAddPopup} />
+            <TablePopup openPopup={addPopup} closePopup={setAddPopup} data={popupData} />
           
             {/* </TablePopup> */}
         
