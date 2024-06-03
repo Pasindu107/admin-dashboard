@@ -4,7 +4,7 @@ import React, { useState } from 'react';
 import Box from '@mui/material/Box';
 import TextField from '@mui/material/TextField';
 import Button from '@mui/material/Button';
-import { loginUser } from '@/src/api/login'; // Adjust the import path accordingly
+import { loginUser } from '@/src/app/api/login'; // Adjust the import path accordingly
 
 const Page = () => {
   const [email, setEmail] = useState('');

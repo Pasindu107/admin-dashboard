@@ -15,7 +15,7 @@ const Sidebar = () => {
           ADMIN PANEL
         </div>
         <Link href={"/"}>
-          <button className='gap-2 px-2 py-3 bg-gray-50 hover:bg-purple-200 focus:bg-purple-400 rounded-lg my-3 p-2 grid  md:grid-cols-4 md:min-w-[20px] sm:grid-cols-3 lg:w-[275px] grid-cols-2 items-center justify-between cursor-pointer'>
+          <button className='gap-2 px-2 py-3 bg-gray-50 hover:bg-slate-300 focus:bg-blue-950 focus:text-white active:bg-blue-950 rounded-lg my-3 p-2 grid  md:grid-cols-4 md:min-w-[20px] sm:grid-cols-3 lg:w-[275px] grid-cols-2 items-center justify-between cursor-pointer'>
             <HomeIcon />
             <div className=''>
               Home
@@ -24,7 +24,7 @@ const Sidebar = () => {
           </button>          
         </Link>
         <Link href={"/sales"}>
-          <button className='gap-2 px-2 py-3 bg-gray-50 hover:bg-purple-200 focus:bg-purple-400 rounded-lg my-3 p-2 grid md:grid-cols-4 md:min-w-[20px] sm:grid-cols-3 lg:w-[275px] grid-cols-2 items-center justify-between cursor-pointer'>
+          <button className='gap-2 px-2 py-3 bg-gray-50 hover:bg-slate-300 focus:bg-blue-950 focus:text-white active:bg-blue-950 rounded-lg my-3 p-2 grid md:grid-cols-4 md:min-w-[20px] sm:grid-cols-3 lg:w-[275px] grid-cols-2 items-center justify-between cursor-pointer'>
             <BarChart /> 
             <div className=''>
               Sales
@@ -32,7 +32,7 @@ const Sidebar = () => {
           </button> 
         </Link>
         <Link href={"/items"}>
-          <button className='gap-2 px-2 py-3 bg-gray-50 hover:bg-purple-200 focus:bg-purple-400 rounded-lg my-3 p-2 grid md:grid-cols-4 sm:grid-cols-3 lg:w-[275px] grid-cols-2 items-center justify-between cursor-pointer'>
+          <button className='gap-2 px-2 py-3 bg-gray-50 hover:bg-slate-300 focus:bg-blue-950 focus:text-white active:bg-blue-950 rounded-lg my-3 p-2 grid md:grid-cols-4 sm:grid-cols-3 lg:w-[275px] grid-cols-2 items-center justify-between cursor-pointer'>
             <ListChecks /> 
             <div className=''>
               Items
@@ -40,7 +40,7 @@ const Sidebar = () => {
           </button> 
         </Link>
         <Link href={"/supplier"}>
-          <button className='gap-2 px-2 py-3 bg-gray-50 hover:bg-purple-200 focus:bg-purple-400 rounded-lg my-3 p-2 grid md:grid-cols-4 sm:grid-cols-3 lg:w-[275px] grid-cols-2 items-center justify-between cursor-pointer'>
+          <button className='gap-2 px-2 py-3 bg-gray-50 hover:bg-slate-300 focus:bg-blue-950 focus:text-white active:bg-blue-950 rounded-lg my-3 p-2 grid md:grid-cols-4 sm:grid-cols-3 lg:w-[275px] grid-cols-2 items-center justify-between cursor-pointer'>
             <ListChecks /> 
             <div className=''>
               Supplier

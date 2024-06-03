@@ -1,14 +1,7 @@
 "use client";
 
 import TablePopup from "@/components/TablePopup";
-import {
-  Table,
-  TableBody,
-  TableCell,
-  TableHead,
-  TableHeader,
-  TableRow,
-} from "@/components/ui/table";
+
 import Link from "next/link";
 import React, { useEffect, useState } from "react";
 
@@ -37,7 +30,6 @@ const fetchData = async () => {
   }
 };
 
-// Component
 export default function Data() {
   const [data, setData] = useState([]);
   const [addPopup, setAddPopup] = useState(false);
@@ -52,9 +44,39 @@ export default function Data() {
     fetchDataAndSetData();
   }, []);
 
+
+  
+     const [downloadError, setDownloadError] = useState(null);
+  
+    const downloadImage = async (imageName) => {
+      try {
+        const response = await fetch(`/api/supfiledown?imageName=${imageName}`);
+        if (!response.ok) {
+          throw new Error(`Error downloading image: ${response.statusText}`);
+        }    
+        const blob = await response.blob();
+        const url = window.URL.createObjectURL(blob);
+        const a = document.createElement('a');
+        a.href = url;
+        a.download = imageName;
+        document.body.appendChild(a);
+        a.click();
+        document.body.removeChild(a);
+        window.URL.revokeObjectURL(url);
+      } catch (error) {
+        if (error.message.includes("Error downloading image")) {
+          alert("file not found");
+        } else {
+          alert(`An error occurred: ${error.message}`);
+        }
+        setDownloadError(error.message);
+      }  
+    }
+
   // Click handler function
-  const handleCellClick = (item, fieldName) => {
+  const handleCellClick = async (item, fieldName) => {
     let responseMessage;
+
     switch (fieldName) {
       case "IdNo":
         //responseMessage = `IdNo is: ${item.IdNo}`
@@ -128,8 +150,25 @@ export default function Data() {
         responseMessage = `Authorized Person ID is: ${item.AuthPersonID}`;
         break;
       case "BankInfor":
-        responseMessage = `Bank Info is: ${item.BankInfor}`;
+        // responseMessage = `Bank Info is: ${item.BankInfor}`;
+        // if (fieldName === 'BankInfor') {
+        //   try {
+        //     console.log(item.BankInfor);
+        //     //const response = await fetch(`/api/image-download?imageName=${item.BankInfor}`);
+        //     let response = await FtpDownload.ftpdown(item.BankInfor);
+        //     if (response.ok) {          
+        //       const blob = await response.blob();
+        //       setPopupData(URL.createObjectURL(blob))
+        //       setAddPopup(true);
+        //     } else {
+        //       console.error('Failed to download image');
+        //     }
+        //   } catch (error) {
+        //     console.error('Error downloading image:', error);
+        //   }
+        // }
 
+        downloadImage(item.BankInfor)
         break;
       case "InsertDate":
         responseMessage = `Insert Date is: ${item.InsertDate}`;

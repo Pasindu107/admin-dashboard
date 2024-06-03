@@ -27,11 +27,8 @@ import {
       <AlertDialogContent>
           <AlertDialogHeader>
           <AlertDialogTitle>Supplier Details</AlertDialogTitle>
-          <AlertDialogDescription>
-
-                <h2>Company type</h2>
-                <p className="p-4 text-[20px]">{data}</p>
-
+          <AlertDialogDescription className='text-[20px]'>                
+                {data}
           </AlertDialogDescription>
           </AlertDialogHeader>
           <AlertDialogFooter>

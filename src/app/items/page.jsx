@@ -51,7 +51,7 @@ export default function Data() {
     return (
         <div className='p-4'>
           <div className='w-full m-auto p-4 rounded-lg bg-white overflow-y-auto'>
-            <div className='bg-purple-200 my-3 pl-4  p-4 grid md:grid-cols-3 sm:grid-cols-2 items-center border border-purple-200 rounded-lg '>
+            <div className='bg-blue-950 text-white my-3 pl-4  p-4 grid md:grid-cols-3 sm:grid-cols-2 items-center border border-purple-200 rounded-lg '>
                 <span>Item Code</span>
                 <span className='sm:text-left text-right'>Sold Date</span>
                 <span className='hidden md:grid'>Item Name</span>
