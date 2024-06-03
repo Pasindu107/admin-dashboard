@@ -2,31 +2,8 @@
 
 import TablePopup from "@/components/TablePopup";
 import React, { useEffect, useState } from "react";
+import {fetchData} from "@/src/app/api/supdata"
 
-
-
-// Function to fetch data from the API
-const fetchData = async () => {
-  const token =
-    "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6IlBhc2luZHUiLCJpYXQiOjE3MTYwMTMyOTQsImV4cCI6MzE3MjYwNDU1Njk0fQ.oqjRfBHwna323gz1bh00niCpcA0efJMNe-NMQ50m0CQ";
-  try {
-    const fieldData = {
-      method: "GET",
-      headers: { "Content-Type": "application/json", "access-token": token },
-      body: JSON.stringify(),
-    };
-    const response = await fetch(
-      "http://localhost:8000/supplier/getsupreg",
-      fieldData
-    );
-    const data = await response.json();
-    // console.log(data.Data);
-    return data.Data;
-  } catch (error) {
-    console.error(error);
-    return [];
-  }
-};
 
 export default function Data() {
   const [data, setData] = useState([]);
@@ -163,7 +140,7 @@ export default function Data() {
 
   // Render fetched data in a table
   return (
-    <div className="   overflow-scroll rounded-lg md:w-[675px]  lg:w-[668px] xl:w-[1550px]">
+    <div className=" overflow-scroll rounded-lg md:w-[500px]  lg:w-[668px] xl:w-[1550px]">
       <table className="">
         <thead className=" bg-blue-950 text-white ">
           <tr>

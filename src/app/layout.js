@@ -18,9 +18,9 @@ export default function RootLayout({ children }) {
   
   return (
     <html lang="en">
-      <body className={`${inter.className} flex h-screen bg-slate-200 ` }> 
+      <body className={`${inter.className} ` }> 
           {/* <div className="md:pl-2 lg:pl-2 xl:pl-2 py-2 "><Sidebar /></div> */}
-          <div className=" flex flex-col w-full ">
+          <div className="">
             
             {/* <div className="flex-shrink-0 pb-2 ">
             <Header />

@@ -1,9 +1,11 @@
+import Data from '@/components/SupTable'
 import React from 'react'
 
 const page = () => {
   return (
-    <div>
+    <div className='flex justify-center'>
       Sales
+      {/* <Data /> */}
     </div>
   )
 }
