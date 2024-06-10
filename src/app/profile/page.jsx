@@ -15,7 +15,7 @@ const page = () => {
     <Table>
   <TableCaption>A list of your recent invoices.</TableCaption>
   <TableHeader>
-    <TableRow className="bg-blue-950 ">
+    <TableRow className="bg-blue-950 rounded">
       <TableHead className="w-[100px] text-white">Invoice</TableHead>
       <TableHead className="text-white">Status</TableHead>
       <TableHead className="text-white">Method</TableHead>

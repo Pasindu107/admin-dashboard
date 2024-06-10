@@ -1,3 +1,5 @@
+//gte all data in supplier registraton table
+
 // Function to fetch data from the API
 const fetchData = async () => {
     const token =

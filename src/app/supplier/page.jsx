@@ -1,5 +1,6 @@
 "use client";
 
+import SupTableEdit from "@/components/SupTableEdit";
 import TablePopup from "@/components/TablePopup";
 import React, { useEffect, useState } from "react";
 
@@ -32,6 +33,7 @@ export default function Data() {
   const [data, setData] = useState([]);
   const [addPopup, setAddPopup] = useState(false);
   const [popupData, setPopupData] = useState(null);
+
 
   // Fetch data when the component mounts
   useEffect(() => {
@@ -124,7 +126,7 @@ export default function Data() {
         responseMessage = `Contact Person 2 is: ${item.ContactPerson2}`;
         break;
       case "PrimaryEmailAddress":
-        responseMessage = `Primary Email Address is: ${item.PrimaryEmailAddress}`;
+        // responseMessage = `Primary Email Address is: ${item.PrimaryEmailAddress}`;
         break;
       case "SecondaryEmailAddress":
         responseMessage = `Secondary Email Address is: ${item.SecondaryEmailAddress}`;
@@ -157,22 +159,26 @@ export default function Data() {
         responseMessage = `Clicked on: ${fieldName}`;
         setPopupData(null); // Clear the data if popup is closed
         setAddPopup(false); // Close the popup for all other cell clicks
+        
     }
     
   };
 
+
+
   // Render fetched data in a table
   return (
-    <div className="   overflow-scroll rounded-lg md:w-[675px]  lg:w-[668px] xl:w-[1550px]">
+    <div className="overflow-auto rounded-[10px]">
+    <div className="w-[100px]">
       <table className="">
-        <thead className=" bg-blue-950 text-white ">
+        <thead className=" bg-blue-950 text-white">
           <tr>
             {data.length > 0 &&
               Object.keys(data[0]).map((key, index) => (
-                <th key={index} className="p-3">
+                <th key={index} className="p-3 ">
                   {key}
-                </th>
-              ))}
+                </th>))}
+                <th className="pr-3"></th>
           </tr>
         </thead>
         <tbody className="divide-y">
@@ -181,14 +187,18 @@ export default function Data() {
               {Object.keys(item).map((fieldName, cellIndex) => (
                 <td
                   key={cellIndex}
-                  className= {`text-sm p-3 cursor-pointer 
-                  ${fieldName ==="CompanyType" || fieldName ==="SupplierName" ? "hover:bg-gray-100" : ""} 
-                  ${fieldName === "BankInfor" ? "hover:text-red-500 focus:text-red-500": ""}`}
+                  className= {`text-sm p-3 text-center
+                  ${fieldName ==="CompanyType" || fieldName ==="SupplierName" ? "hover:bg-gray-100 cursor-pointer" : ""} 
+                  ${fieldName === "BankInfor" ? "hover:text-red-500 focus:text-red-500 cursor-pointer": ""}`}
                   onClick={() => handleCellClick(item, fieldName)}
                 >
                   {item[fieldName]}
                 </td>
               ))}
+              <td className="px-4 sticky right-0 " >
+                <SupTableEdit email={item.PrimaryEmailAddress} SupCode={item.SupplierCode}
+                 />
+              </td>
             </tr>
           ))}
         </tbody>        
@@ -196,6 +206,7 @@ export default function Data() {
         <div>
             <TablePopup openPopup={addPopup} closePopup={setAddPopup} data={popupData} />        
         </div>
+    </div>
     </div>
     
   );
