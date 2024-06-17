@@ -4,13 +4,10 @@
 import React, { useState, useEffect, useRef } from 'react';
 import UserItem from './UserItem';
 import SidebarButton from './SidebarButton';
-import Pagename from './Pagename';
-import Sidebar from './Sidebar';
-import Link from 'next/link';
-import { BarChart, HomeIcon, ListChecks } from 'lucide-react';
+
 import MobileSidebar from './MobileSidebar';
 
-const Header = (props) => {
+const Header = ({ headerText }) => {
   const [menuOpen, setMenuOpen] = useState(false);
   const sidebarRef = useRef(null);
 
@@ -51,8 +48,8 @@ const Header = (props) => {
         
       </div>
         
-      <div className='p-2 hidden md:block lg:block xl:block'>
-        <Pagename page={props.page}/>
+      <div className='header p-2 hidden md:block lg:block xl:block'>
+        { headerText }
       </div>
       <div>
         <UserItem />

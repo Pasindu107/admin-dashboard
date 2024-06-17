@@ -18,9 +18,24 @@ import { Pencil } from 'lucide-react'
 import { IoPersonAddOutline } from "react-icons/io5";
 
 
+import Badge from '@mui/material/Badge';
+import { styled } from '@mui/material/styles';
+
+
+const StyledBadge = styled(Badge)(() => ({
+  '& .MuiBadge-badge': {
+    right: -8,
+    top: 20,
+
+    padding: '0 4px',
+  },
+}));
+
+
+
 
 const SupTableEdit = (props) => {
-    const { email, SupCode } = props; 
+    const { email, SupCode, ResetRequest } = props; 
 
 
       // State to manage form inputs
@@ -77,14 +92,28 @@ const isValidEmail = (email) => {
   return (
     <div>
         <Dialog open={dialogOpen} onOpenChange={setDialogOpen}>
-      <DialogTrigger asChild>
-        <Button variant="secondary" className={`rounded-[20px]  ${SupCode && SupCode.trim() !== '' ? "bg-green-200 hover:bg-green-400" : "bg-red-200 hover:bg-red-400"}`} >
-        {SupCode && SupCode.trim() !== '' ? (
-                            <Pencil className='size-4' />
-                        ) : (
-                            <IoPersonAddOutline className='size-4' />
-                        )}
-        </Button>
+        <DialogTrigger asChild>
+
+
+            <Button variant="secondary" className={`rounded-[20px]  ${SupCode && SupCode.trim() !== '' ? "bg-green-200 hover:bg-green-400" : "bg-red-200 hover:bg-red-400"}`} >
+            {SupCode && SupCode.trim() !== '' ? (   
+                                 ResetRequest === 1 ? (
+                                   <StyledBadge badgeContent="1" color="error">
+                                      <Pencil  className='size-4' />
+                                   </StyledBadge>
+                                 ) : (
+                                   <Pencil className='size-4' />
+                                 )                               
+                            ) : (
+                                <div className='inline-flex'>
+                             
+                                <IoPersonAddOutline className='size-4' />
+                                </div>
+                            )}
+            </Button>
+
+
+
       </DialogTrigger>
       <DialogContent className="sm:max-w-[425px]">
         <DialogHeader>

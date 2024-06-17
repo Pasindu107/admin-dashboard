@@ -10,18 +10,15 @@ import React, { useEffect, useState } from "react";
 const fetchData = async () => {
   const token =
     "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6IlBhc2luZHUiLCJpYXQiOjE3MTYwMTMyOTQsImV4cCI6MzE3MjYwNDU1Njk0fQ.oqjRfBHwna323gz1bh00niCpcA0efJMNe-NMQ50m0CQ";
+  const scode = 0
+  
   try {
-    const fieldData = {
+    const queryParams = `?scode=${encodeURIComponent(scode)}`;
+    const response = await fetch(`http://localhost:8000/supplier/getsupreg${queryParams}`, {
       method: "GET",
       headers: { "Content-Type": "application/json", "access-token": token },
-      body: JSON.stringify(),
-    };
-    const response = await fetch(
-      "http://localhost:8000/supplier/getsupreg",
-      fieldData
-    );
+    });
     const data = await response.json();
-    // console.log(data.Data);
     return data.Data;
   } catch (error) {
     console.error(error);
@@ -168,23 +165,28 @@ export default function Data() {
 
   // Render fetched data in a table
   return (
-    <div className="overflow-auto rounded-[10px]">
+    <div className="overflow-auto rounded-[10px] bg-white">
     <div className="w-[100px]">
       <table className="">
         <thead className=" bg-blue-950 text-white">
           <tr>
             {data.length > 0 &&
               Object.keys(data[0]).map((key, index) => (
+
+                key !== "ResetRequest" && (   //remove ResetRequest coloumn
+
                 <th key={index} className="p-3 ">
                   {key}
-                </th>))}
-                <th className="pr-3"></th>
+                </th>)
+                ))}
+                <th className=""></th>
           </tr>
         </thead>
         <tbody className="divide-y">
           {data.map((item, rowIndex) => (
             <tr key={rowIndex} className="">
               {Object.keys(item).map((fieldName, cellIndex) => (
+                fieldName !== "ResetRequest" && ( //remove ResetRequest coloumn
                 <td
                   key={cellIndex}
                   className= {`text-sm p-3 text-center
@@ -193,10 +195,10 @@ export default function Data() {
                   onClick={() => handleCellClick(item, fieldName)}
                 >
                   {item[fieldName]}
-                </td>
+                </td>)
               ))}
-              <td className="px-4 sticky right-0 " >
-                <SupTableEdit email={item.PrimaryEmailAddress} SupCode={item.SupplierCode}
+              <td className="pr-1 sticky right-0 " >
+                <SupTableEdit email={item.PrimaryEmailAddress} SupCode={item.SupplierCode} ResetRequest={item.ResetRequest}
                  />
               </td>
             </tr>

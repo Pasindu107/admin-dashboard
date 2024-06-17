@@ -1,26 +1,42 @@
 'use client'
-import { BarChart, HomeIcon, ListChecks } from 'lucide-react'
+import { BarChart, HomeIcon, ListChecks, Upload, Users } from 'lucide-react'
 import Link from 'next/link'
-import React from 'react'
+
 import { useRouter } from 'next/navigation'
+import { useState } from 'react'
 
 
-const Sidebar = () => {
+const Sidebar = ({ updateHeaderText }) => {
   const router = useRouter()
   // const [selectedButton, setSelectedButton] = useState('')
+  const [selectedButton, setSelectedButton] = useState(null);
+  
 
+  const handleSidebarButtonClick = (buttonText) => {
+    // Update header text based on the clicked button
+    updateHeaderText(buttonText);
+
+    // Update the selected button
+    setSelectedButton(buttonText);
+  };
+
+  const isButtonSelected = (buttonText) => {
+    return selectedButton === buttonText;
+  };
 
 
   return (
 
     
-    <div className='relative flex-col hidden sm:hidden md:block lg:block xl:block md:min-w-[200px] lg:min-w-[300px] xl:min-w-[300px] border-r min-h-full p-4 bg-white rounded-[10px]'>
+    <div className='relative flex-col hidden sm:hidden md:block lg:block xl:block w-[250px] md:max-w-[235px] lg:max-w-[250px] xl:max-w-[300px]   border-r min-h-full p-4 bg-white rounded-[10px]'>
         <div className='text-[25px] min-h-[100px] p-4'>
           ADMIN PANEL
         </div>
         <Link href={"/"}>
           <button  
-            className='gap-2 px-2 py-3 bg-gray-50 hover:bg-slate-300 focus:bg-blue-950 focus:text-white active:bg-blue-950 rounded-lg my-3 p-2 grid  md:grid-cols-4 md:min-w-[20px] sm:grid-cols-3 lg:w-[275px] grid-cols-2 items-center justify-between cursor-pointer'>
+            className={`gap-2 px-2 py-3 bg-gray-50  rounded-lg my-3 p-2 grid  md:grid-cols-4 sm:grid-cols-3  grid-cols-2 items-center justify-between cursor-pointer'
+             `}
+            onClick={() => handleSidebarButtonClick('DASHBOARD')}>
             <HomeIcon />
             <div className='' >    
               Dashboard
@@ -29,7 +45,11 @@ const Sidebar = () => {
           </button>          
         </Link>
         <Link href={"/sales"}>
-          <button className='gap-2 px-2 py-3 w-full bg-gray-50 hover:bg-slate-300 focus:bg-blue-950 focus:text-white active:bg-blue-950 rounded-lg my-3 p-2 grid md:grid-cols-4 md:min-w-[20px] sm:grid-cols-3 lg:w-[275px] grid-cols-2 items-center justify-between cursor-pointer'>
+        <button
+          className={`gap-2 px-2 py-3 w-full bg-gray-50  rounded-lg my-3 p-2 grid md:grid-cols-4 sm:grid-cols-3 grid-cols-2 items-center justify-between cursor-pointer 
+          `}
+          onClick={() => handleSidebarButtonClick('SALES')}>
+
             <BarChart /> 
             <div className=''>
               Sales
@@ -37,7 +57,9 @@ const Sidebar = () => {
           </button> 
         </Link>
         <Link href={"/items"}>
-          <button className='gap-2 px-2 py-3 w-full bg-gray-50 hover:bg-slate-300 focus:bg-blue-950 focus:text-white active:bg-blue-950 rounded-lg my-3 p-2 grid md:grid-cols-4 sm:grid-cols-3 lg:w-[275px] grid-cols-2 items-center justify-between cursor-pointer'>
+          <button className={`gap-2 px-2 py-3 w-full bg-gray-50  rounded-lg my-3 p-2 grid md:grid-cols-4 sm:grid-cols-3  grid-cols-2 items-center justify-between cursor-pointer
+          `}
+          onClick={() => handleSidebarButtonClick('ITEMS')}>
             <ListChecks /> 
             <div className=''>
               Items
@@ -45,13 +67,25 @@ const Sidebar = () => {
           </button> 
         </Link>
         <Link href={"/supplier"}>
-          <button className='gap-2 px-2 py-3 bg-gray-50 hover:bg-slate-300 focus:bg-blue-950 focus:text-white active:bg-blue-950 rounded-lg my-3 p-2 grid md:grid-cols-4 sm:grid-cols-3 lg:w-[275px] grid-cols-2 items-center justify-between cursor-pointer'>
-            <ListChecks /> 
+          <button className={`gap-2 px-2 py-3 bg-gray-50 rounded-lg my-3 p-2 grid md:grid-cols-4 sm:grid-cols-3  grid-cols-2 items-center justify-between cursor-pointer
+          `}
+          onClick={() => handleSidebarButtonClick('SUPPLIER')}>
+            <Users /> 
             <div className=''>
               Supplier
             </div>  
           </button> 
         </Link>    
+        <Link href={"/uploadpurchase"}>
+          <button className={`gap-2 px-2 py-3 bg-gray-50 rounded-lg my-3 p-2 grid md:grid-cols-4 sm:grid-cols-3  grid-cols-2 items-center justify-between cursor-pointer
+          `}
+          onClick={() => handleSidebarButtonClick('Upload')}>
+            <Upload /> 
+            <div className=''>
+              Upload
+            </div>  
+          </button> 
+        </Link> 
 
 
 

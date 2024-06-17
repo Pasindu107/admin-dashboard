@@ -18,6 +18,8 @@ module.exports = {
     },
     extend: {
       colors: {
+        mintleaf: "#00b894",
+        exodus:"#6c5ce7",
         border: "hsl(var(--border))",
         input: "hsl(var(--input))",
         ring: "hsl(var(--ring))",
