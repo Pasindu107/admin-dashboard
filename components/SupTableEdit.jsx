@@ -94,26 +94,22 @@ const isValidEmail = (email) => {
         <Dialog open={dialogOpen} onOpenChange={setDialogOpen}>
         <DialogTrigger asChild>
 
-
-            <Button variant="secondary" className={`rounded-[20px]  ${SupCode && SupCode.trim() !== '' ? "bg-green-200 hover:bg-green-400" : "bg-red-200 hover:bg-red-400"}`} >
-            {SupCode && SupCode.trim() !== '' ? (   
+        <Button variant="secondary" className={` rounded-full  ${SupCode && SupCode.trim() !== '' ? "bg-green-200 hover:bg-green-400" : "bg-red-200 hover:bg-red-400"}`} >
+          {SupCode && SupCode.trim() !== '' ? (   
                                  ResetRequest === 1 ? (
                                    <StyledBadge badgeContent="1" color="error">
-                                      <Pencil  className='size-4' />
+                                      <Pencil  className='size-3' />
                                    </StyledBadge>
                                  ) : (
-                                   <Pencil className='size-4' />
+                                      <Pencil className='size-3' />
                                  )                               
-                            ) : (
+                          ) : (
                                 <div className='inline-flex'>
                              
-                                <IoPersonAddOutline className='size-4' />
+                                <IoPersonAddOutline className='size-3' />
                                 </div>
-                            )}
-            </Button>
-
-
-
+                          )}
+          </Button>
       </DialogTrigger>
       <DialogContent className="sm:max-w-[425px]">
         <DialogHeader>

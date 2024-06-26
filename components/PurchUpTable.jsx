@@ -1,16 +1,16 @@
 'use client';
 
 import React, { useEffect, useState } from "react";
-import { reimData } from "@/src/app/api/reimData";
+import { purchUpData } from "@/src/app/api/purchUpData";
 
-const ReimTable = () => {
+const PurchUpTable = () => {
     const [data, setData] = useState([]);
 
     // Fetch data when the component mounts
     useEffect(() => {
         const fetchDataAndSetData = async () => {
             try {
-                const newData = await reimData();
+                const newData = await purchUpData();
                 setData(newData);
             } catch (error) {
                 console.error("Error fetching data:", error);
@@ -58,4 +58,4 @@ const ReimTable = () => {
     );
 }
 
-export default ReimTable;
+export default PurchUpTable;

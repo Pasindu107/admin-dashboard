@@ -23,11 +23,13 @@ import {
   PopoverTrigger,
 } from "@/components/ui/popover";
 
-export function PurchComboBox({ onEmailSelect }) {
+export function PurchComboBox({ onEmailSelect, onSupCodeSelect, onSupNameSelect }) {
   const [open, setOpen] = React.useState(false);
   const [value, setValue] = React.useState("");
   const [email, setEmail] = React.useState("");
+  const [supName, setSupName] = React.useState("");
   const [suppliers, setSuppliers] = React.useState([]);
+  
 
   React.useEffect(() => {
     const fetchSuppliersData = async () => {
@@ -50,6 +52,25 @@ export function PurchComboBox({ onEmailSelect }) {
     }
     setOpen(false);
   };
+
+  const handlesSupCode = (selectedSupCode) => {
+    setValue(selectedSupCode);
+    if (onSupCodeSelect) {
+      onSupCodeSelect(selectedSupCode);
+    }
+    setOpen(false);
+  };
+
+  const handlesSupName = (selectedSupName) => {
+    setSupName(selectedSupName);
+    if (onSupNameSelect) {
+      onSupNameSelect(selectedSupName);
+    }
+    setOpen(false);
+  };
+
+
+
 
   return (
     <div className="flex flex-col space-y-6">
@@ -81,7 +102,10 @@ export function PurchComboBox({ onEmailSelect }) {
                       key={supplier.value}
                       onSelect={() => {
                         handleEmailSelection(supplier.email);
-                        setValue(supplier.value);                        
+                        setValue(supplier.value);
+                        handlesSupCode(supplier.value);
+                        handlesSupName(supplier.label);
+
                         setOpen(false);
                       }}
                     >
@@ -106,7 +130,7 @@ export function PurchComboBox({ onEmailSelect }) {
         </div>
         <Label className='rounded p-3 bg-slate-100'>{email}</Label>
         
-
+ 
     </div>
   );
 }

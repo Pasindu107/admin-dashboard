@@ -76,7 +76,7 @@ const ReimDatePicker = ({onDateChange}) => {
                 type='date'
                 value={date}
                 onChange={handleChange} 
-                className='border-red-300 rounded-lg p-2 w-full'
+                className='border-red-300 rounded-lg p-2 w-full text-sm'
             />
         </div>
     )

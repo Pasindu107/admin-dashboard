@@ -6,6 +6,8 @@ import UserItem from './UserItem';
 import SidebarButton from './SidebarButton';
 
 import MobileSidebar from './MobileSidebar';
+import HeaderTitle from './HeaderTitle';
+
 
 const Header = ({ headerText }) => {
   const [menuOpen, setMenuOpen] = useState(false);
@@ -49,7 +51,7 @@ const Header = ({ headerText }) => {
       </div>
         
       <div className='header p-2 hidden md:block lg:block xl:block'>
-        { headerText }
+        <HeaderTitle />
       </div>
       <div>
         <UserItem />

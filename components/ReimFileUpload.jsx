@@ -34,6 +34,10 @@ export default function ReimFileUpload() {
     setDescription(e.target.value);
   };
 
+  const handleMessage = () => {
+    {message}
+  }
+
   const handleSubmit = async (e) => {
     e.preventDefault();
 
@@ -92,7 +96,7 @@ export default function ReimFileUpload() {
 
       const result2 = await response2.json();
       if (result2.Success) {
-        setMessage('Data Entered Successfully');
+        setMessage('Done!');
       } else {
         setMessage(result2.Message);
       }
@@ -101,6 +105,8 @@ export default function ReimFileUpload() {
       setMessage('An error occurred. Please try again.');
     } finally {
       setIsLoading(false);
+      window.location.reload();  
+
     }
   };
 
@@ -108,14 +114,14 @@ export default function ReimFileUpload() {
     <div className='grid'>
       <div className='w-full'>
         <div className='grid bg-white shadow-lg rounded-lg p-4'>
-          <div className='grid sm:grid-cols-1 md:grid-cols-4 lg:grid-cols-8 p-4'>
-            <div className=' p-2 text-sm'>Supplier</div>
+          <div className='grid sm:grid-cols-1 md:grid-cols-4 lg:grid-cols-8 px-4 py-2'>
+            <div className='p-2 text-sm'>Supplier</div>
             <div className='col-span-2 lg:col-span-4'>
               <ReimComboBox onSupCodeSelect={handlesupCodeSelect} onEmailSelect={handleEmailSelect} />
             </div>
           </div>
 
-          <div className='grid sm:grid-cols-1 md:grid-cols-4 lg:grid-cols-8 p-4'>
+          <div className='grid sm:grid-cols-1 md:grid-cols-4 lg:grid-cols-8 px-4 py-2'>
             <div className='content-center p-2 text-sm'>
                 Select Date
             </div>
@@ -124,7 +130,7 @@ export default function ReimFileUpload() {
             </div>
           </div>
 
-          <div className='grid sm:grid-cols-1 md:grid-cols-4 lg:grid-cols-8 p-4'>
+          <div className='grid sm:grid-cols-1 md:grid-cols-4 lg:grid-cols-8 px-4 py-2'>
             <div className='content-center p-2 text-sm'>
               Description
             </div>
@@ -137,7 +143,7 @@ export default function ReimFileUpload() {
             />
           </div>
 
-          <div className='grid sm:grid-cols-1 md:grid-cols-4 lg:grid-cols-8 p-4'>
+          <div className='grid sm:grid-cols-1 md:grid-cols-4 lg:grid-cols-8 px-4 py-2'>
             <div className='p-2 text-sm'>Upload File</div>
             <form onSubmit={handleSubmit} className='flex flex-col gap-4 col-span-2 lg:col-span-4'>
               <Input type="file" className='' onChange={handleFileChange} />

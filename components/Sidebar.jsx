@@ -32,9 +32,11 @@ const Sidebar = ({ updateHeaderText }) => {
         <div className='text-[25px] min-h-[100px] p-4'>
           ADMIN PANEL
         </div>
-        <Link href={"/"}>
+        
           <button  
-            className={`gap-2 px-2 py-3 bg-gray-50  rounded-lg my-3 p-2 grid  md:grid-cols-4 sm:grid-cols-3  grid-cols-2 items-center justify-between cursor-pointer'
+            type="button"
+            onClick={() => router.push('/')}
+            className={`gap-2 px-2 py-3 bg-gray-50 hover:bg-blue-950 hover:text-white  rounded-lg my-3 p-2 grid  md:grid-cols-4 sm:grid-cols-3  grid-cols-2 items-center justify-between cursor-pointer'
              `}>
             <HomeIcon />
             <div className='' >    
@@ -42,10 +44,10 @@ const Sidebar = ({ updateHeaderText }) => {
             </div>
                
           </button>          
-        </Link>
+        
         <Link href={"/sales"}>
         <button
-          className={`gap-2 px-2 py-3 w-full bg-gray-50  rounded-lg my-3 p-2 grid md:grid-cols-4 sm:grid-cols-3 grid-cols-2 items-center justify-between cursor-pointer 
+          className={`gap-2 px-2 py-3 w-full bg-gray-50 hover:bg-blue-950 hover:text-white rounded-lg my-3 p-2 grid md:grid-cols-4 sm:grid-cols-3 grid-cols-2 items-center justify-between cursor-pointer 
           `}
           >
 
@@ -56,7 +58,7 @@ const Sidebar = ({ updateHeaderText }) => {
           </button> 
         </Link>
         <Link href={"/items"}>
-          <button className={`gap-2 px-2 py-3 w-full bg-gray-50  rounded-lg my-3 p-2 grid md:grid-cols-4 sm:grid-cols-3  grid-cols-2 items-center justify-between cursor-pointer
+          <button className={`gap-2 px-2 py-3 w-full bg-gray-50 hover:bg-blue-950 hover:text-white rounded-lg my-3 p-2 grid md:grid-cols-4 sm:grid-cols-3  grid-cols-2 items-center justify-between cursor-pointer
           `}
           >
             <ListChecks /> 
@@ -66,7 +68,7 @@ const Sidebar = ({ updateHeaderText }) => {
           </button> 
         </Link>
         <Link href={"/supplier"}>
-          <button className={`gap-2 px-2 py-3 bg-gray-50 rounded-lg my-3 p-2 grid md:grid-cols-4 sm:grid-cols-3  grid-cols-2 items-center justify-between cursor-pointer
+          <button className={`gap-2 px-2 py-3 bg-gray-50 hover:bg-blue-950 hover:text-white rounded-lg my-3 p-2 grid md:grid-cols-4 sm:grid-cols-3  grid-cols-2 items-center justify-between cursor-pointer
           `}
           >
             <Users /> 
@@ -76,7 +78,7 @@ const Sidebar = ({ updateHeaderText }) => {
           </button> 
         </Link>    
         <Link href={"/uploadpurchase"}>
-          <button className={`gap-2 px-2 py-3 bg-gray-50 rounded-lg my-3 p-2 grid md:grid-cols-4 sm:grid-cols-3  grid-cols-2 items-center justify-between cursor-pointer
+          <button className={`gap-2 px-2 py-3 bg-gray-50 hover:bg-blue-950 hover:text-white rounded-lg my-3 p-2 grid md:grid-cols-4 sm:grid-cols-3  grid-cols-2 items-center justify-between cursor-pointer
           `}
           >
             <Upload /> 
@@ -86,7 +88,7 @@ const Sidebar = ({ updateHeaderText }) => {
           </button> 
         </Link> 
         <Link href={"/reimsummery"}>
-          <button className={`gap-2 px-2 py-3 bg-gray-50 rounded-lg my-3 p-2 grid md:grid-cols-4 sm:grid-cols-3  grid-cols-2 items-center justify-between cursor-pointer
+          <button className={`gap-2 px-2 py-3 bg-gray-50 hover:bg-blue-950 hover:text-white rounded-lg my-3 p-2 grid md:grid-cols-4 sm:grid-cols-3  grid-cols-2 items-center justify-between cursor-pointer
           `}
           >
             <Upload /> 

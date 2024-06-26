@@ -1,11 +1,14 @@
 //import Image from "next/image";
+'use client'
 
-
-
-export default function Home(props) {
+import { useRouter } from 'next/navigation'
+ 
+export default function Page() {
+  const router = useRouter()
+ 
   return (
-    <main>
-      <div className="overflow-auto p-4"></div>
-    </main>
-  );
+    <button type="button" onClick={() => router.push('/supplier')}>
+      Supplier
+    </button>
+  )
 }

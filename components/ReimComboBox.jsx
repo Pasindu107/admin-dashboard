@@ -60,7 +60,7 @@ export function ReimComboBox({ onSupCodeSelect, onEmailSelect}) {
   };
 
   return (
-    <div className="flex flex-col space-y-6">
+    <div className="flex flex-col space-y-3">
       <div className="flex gap-4">
       <div className="w-full">
         <Popover open={open} onOpenChange={setOpen}>
@@ -113,7 +113,7 @@ export function ReimComboBox({ onSupCodeSelect, onEmailSelect}) {
           <Label className='content-center rounded p-2 bg-slate-100'>{value}</Label>     
 
         </div>
-        <Label className='rounded p-3 bg-slate-100'>{email}</Label>
+        <Label className='rounded p-4 bg-slate-100'>{email}</Label>
         
 
     </div>
