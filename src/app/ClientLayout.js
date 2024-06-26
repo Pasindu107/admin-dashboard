@@ -12,27 +12,27 @@ export default function ClientLayout({ children }) {
   const isRegisterPage = pathname === '/register';
 
 
-  // Define the headerText state variable
-  const [headerText, setHeaderText] = useState();
+  // // Define the headerText state variable
+  // const [headerText, setHeaderText] = useState();
 
-  // Function to update header text
-  const updateHeaderText = (text) => {
-    setHeaderText(text);
-  };
-
+  // // Function to update header text
+  // const updateHeaderText = (text) => {
+  //   setHeaderText(text);
+  // };
+  
 
 
   return (
     <div className="flex h-screen bg-slate-200">
       {!isLoginPage && !isRegisterPage && (
         <div className="md:pl-2 lg:pl-2 xl:pl-2 py-2">
-          <Sidebar updateHeaderText={updateHeaderText} />
+          <Sidebar />
         </div>
       )}
       <div className={`flex flex-col w-full p-2 ${isLoginPage || isRegisterPage ? '' : 'pl-2'}`}>
         {!isLoginPage && !isRegisterPage && (
           <div className="flex-shrink-0 pb-2">
-            <Header headerText={headerText} />
+            <Header />
           </div>
         )}
         <div className="p-4 flex-grow bg-white rounded-[10px] overflow-auto">{children}</div>

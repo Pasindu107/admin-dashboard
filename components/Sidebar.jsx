@@ -12,13 +12,13 @@ const Sidebar = ({ updateHeaderText }) => {
   const [selectedButton, setSelectedButton] = useState(null);
   
 
-  const handleSidebarButtonClick = (buttonText) => {
-    // Update header text based on the clicked button
-    updateHeaderText(buttonText);
+  // const handleSidebarButtonClick = (buttonText) => {
+  //   // Update header text based on the clicked button
+  //   updateHeaderText(buttonText);
 
-    // Update the selected button
-    setSelectedButton(buttonText);
-  };
+  //   // Update the selected button
+  //   setSelectedButton(buttonText);
+  // };
 
   const isButtonSelected = (buttonText) => {
     return selectedButton === buttonText;
@@ -35,8 +35,7 @@ const Sidebar = ({ updateHeaderText }) => {
         <Link href={"/"}>
           <button  
             className={`gap-2 px-2 py-3 bg-gray-50  rounded-lg my-3 p-2 grid  md:grid-cols-4 sm:grid-cols-3  grid-cols-2 items-center justify-between cursor-pointer'
-             `}
-            onClick={() => handleSidebarButtonClick('DASHBOARD')}>
+             `}>
             <HomeIcon />
             <div className='' >    
               Dashboard
@@ -48,7 +47,7 @@ const Sidebar = ({ updateHeaderText }) => {
         <button
           className={`gap-2 px-2 py-3 w-full bg-gray-50  rounded-lg my-3 p-2 grid md:grid-cols-4 sm:grid-cols-3 grid-cols-2 items-center justify-between cursor-pointer 
           `}
-          onClick={() => handleSidebarButtonClick('SALES')}>
+          >
 
             <BarChart /> 
             <div className=''>
@@ -59,7 +58,7 @@ const Sidebar = ({ updateHeaderText }) => {
         <Link href={"/items"}>
           <button className={`gap-2 px-2 py-3 w-full bg-gray-50  rounded-lg my-3 p-2 grid md:grid-cols-4 sm:grid-cols-3  grid-cols-2 items-center justify-between cursor-pointer
           `}
-          onClick={() => handleSidebarButtonClick('ITEMS')}>
+          >
             <ListChecks /> 
             <div className=''>
               Items
@@ -69,7 +68,7 @@ const Sidebar = ({ updateHeaderText }) => {
         <Link href={"/supplier"}>
           <button className={`gap-2 px-2 py-3 bg-gray-50 rounded-lg my-3 p-2 grid md:grid-cols-4 sm:grid-cols-3  grid-cols-2 items-center justify-between cursor-pointer
           `}
-          onClick={() => handleSidebarButtonClick('SUPPLIER')}>
+          >
             <Users /> 
             <div className=''>
               Supplier
@@ -79,10 +78,20 @@ const Sidebar = ({ updateHeaderText }) => {
         <Link href={"/uploadpurchase"}>
           <button className={`gap-2 px-2 py-3 bg-gray-50 rounded-lg my-3 p-2 grid md:grid-cols-4 sm:grid-cols-3  grid-cols-2 items-center justify-between cursor-pointer
           `}
-          onClick={() => handleSidebarButtonClick('Upload')}>
+          >
             <Upload /> 
             <div className=''>
-              Upload
+              Upload Purchase
+            </div>  
+          </button> 
+        </Link> 
+        <Link href={"/reimsummery"}>
+          <button className={`gap-2 px-2 py-3 bg-gray-50 rounded-lg my-3 p-2 grid md:grid-cols-4 sm:grid-cols-3  grid-cols-2 items-center justify-between cursor-pointer
+          `}
+          >
+            <Upload /> 
+            <div className=''>
+                Upload Reimbursement
             </div>  
           </button> 
         </Link> 

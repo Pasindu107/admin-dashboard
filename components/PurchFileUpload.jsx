@@ -2,9 +2,9 @@
 
 import { useState } from 'react';
 import { Input } from "@/components/ui/input";
-import { ComboBox } from '@/components/ComboBox';
+import { PurchComboBox } from '@/components/PurchComboBox';
 
-export default function FileUpload() {
+export default function PurchFileUpload() {
   const [file, setFile] = useState(null);
   const [poNumber, setPoNumber] = useState('');
   const [selectedEmail, setSelectedEmail] = useState('');
@@ -64,12 +64,12 @@ export default function FileUpload() {
       <div className='w-full'>
         <div className='grid bg-white shadow-lg rounded-lg p-4'>
           <div className='grid sm:grid-cols-1 md:grid-cols-4 lg:grid-cols-8 p-4'>
-            <div className=' p-2'>Supplier</div>
-            <div className='col-span-2 lg:col-span-4'><ComboBox onEmailSelect={handleEmailSelect} /></div>
+            <div className=' p-2 text-sm'>Supplier</div>
+            <div className='col-span-2 lg:col-span-4'><PurchComboBox onEmailSelect={handleEmailSelect} /></div>
           </div>
 
           <div className='grid sm:grid-cols-1 md:grid-cols-4 lg:grid-cols-8 p-4'>
-            <div className='content-center p-2'>
+            <div className='content-center p-2 text-sm'>
               PO Number
             </div>
             <Input 
@@ -82,7 +82,7 @@ export default function FileUpload() {
           </div>
 
           <div className='grid sm:grid-cols-1 md:grid-cols-4 lg:grid-cols-8 p-4'>
-            <div className='p-2'>Upload File</div>
+            <div className='p-2 text-sm'>Upload File</div>
             <form onSubmit={handleSubmit} className='flex flex-col gap-4 col-span-2 lg:col-span-4'>
               <Input type="file" className='' onChange={handleFileChange} />
               <button type="submit" className='rounded bg-indigo-400 px-4 py-2 hover:bg-indigo-500 text-white'>Submit</button>

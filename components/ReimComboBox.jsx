@@ -23,7 +23,7 @@ import {
   PopoverTrigger,
 } from "@/components/ui/popover";
 
-export function ComboBox({ onEmailSelect }) {
+export function ReimComboBox({ onSupCodeSelect, onEmailSelect}) {
   const [open, setOpen] = React.useState(false);
   const [value, setValue] = React.useState("");
   const [email, setEmail] = React.useState("");
@@ -46,13 +46,22 @@ export function ComboBox({ onEmailSelect }) {
   const handleEmailSelection = (selectedEmail) => {
     setEmail(selectedEmail);
     if (onEmailSelect) {
-      onEmailSelect(selectedEmail);
+        onEmailSelect(selectedEmail);
+    }
+    setOpen(false);
+  };
+
+  const handleSupCodeSelection = (selectedSupCode) => {
+    setValue(selectedSupCode);
+    if (onSupCodeSelect) {
+        onSupCodeSelect(selectedSupCode);
     }
     setOpen(false);
   };
 
   return (
-    <div className="flex   gap-2">
+    <div className="flex flex-col space-y-6">
+      <div className="flex gap-4">
       <div className="w-full">
         <Popover open={open} onOpenChange={setOpen}>
           <PopoverTrigger asChild>
@@ -80,7 +89,8 @@ export function ComboBox({ onEmailSelect }) {
                       key={supplier.value}
                       onSelect={() => {
                         handleEmailSelection(supplier.email);
-                        setValue(supplier.value);                        
+                        setValue(supplier.value);
+                        handleSupCodeSelection(supplier.value);                        
                         setOpen(false);
                       }}
                     >
@@ -99,8 +109,13 @@ export function ComboBox({ onEmailSelect }) {
           </PopoverContent>
         </Popover>
         </div>
-        <Label className='rounded p-3 bg-slate-100'>{value}</Label>
+        
+          <Label className='content-center rounded p-2 bg-slate-100'>{value}</Label>     
+
+        </div>
         <Label className='rounded p-3 bg-slate-100'>{email}</Label>
+        
+
     </div>
   );
 }

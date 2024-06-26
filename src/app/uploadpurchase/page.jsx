@@ -1,12 +1,12 @@
 import React from 'react'
 
-import FileUpload from '@/components/FileUpload'
+import PurchFileUpload from '@/components/PurchFileUpload'
 
 const page = () => {
   return (
     <div className='w-full'>
         <div className="">
-           <FileUpload  />
+           <PurchFileUpload  />
         </div>                 
     </div>
   )
