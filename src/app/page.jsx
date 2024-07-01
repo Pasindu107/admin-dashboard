@@ -1,14 +1,20 @@
-//import Image from "next/image";
-'use client'
+import React from 'react';
 
-import { useRouter } from 'next/navigation'
+
+const page = async () => {
  
-export default function Page() {
-  const router = useRouter()
- 
-  return (
-    <button type="button" onClick={() => router.push('/supplier')}>
-      Supplier
-    </button>
-  )
-}
+
+  try {
+    return (
+      
+      <h1 className="p-4">
+        Dashboard
+      </h1>
+      
+    );
+  } catch (error) {
+    throw error;
+  }
+};
+
+export default page

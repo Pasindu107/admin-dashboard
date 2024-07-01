@@ -6,6 +6,7 @@ import Header from "@/components/Header";
 import ClientLayout from "./ClientLayout";
 
 
+
 const inter = Inter({ subsets: ["latin"] });
 
 export const metadata = {
@@ -25,7 +26,10 @@ export default function RootLayout({ children }) {
             {/* <div className="flex-shrink-0 pb-2 ">
             <Header />
             </div> */}
+            
             <ClientLayout>{children}</ClientLayout>
+            
+            
             
             
           </div>

@@ -22,7 +22,7 @@ const Login = () => {
     e.preventDefault();
   
     if (!email || !password) {
-      setError('Please enter both email and password');
+      setError('Please enter Email and Password');
       return;
     }
   
@@ -58,7 +58,7 @@ const Login = () => {
         localStorage.setItem('token', result.Token);
         // Redirect or navigate to another page upon successful login if needed
         router.push('/');
-        console.log(result.Token);
+        //console.log(result.Token);
       } else {
         setError('Login failed. Please check your credentials.');
       }
@@ -70,49 +70,49 @@ const Login = () => {
   
 
   return (
-      <div className='flex'>    
-        <div className=' bg-white shadow-lg rounded-lg p-4'>
-          <div className='w-full p-4'>    
+      <form onSubmit={handleSubmit} className='shadow-lg rounded-lg w-[400px] h-[500px] p-4'>   
+        <div  className='p-4 space-y-4 h-full'>
+          <div className='text-3xl font-bold text-gray-500'>Login</div>
+          <div className='w-full pt-10'>    
             <input 
               type="text" 
               placeholder="Username" 
-              className="border rounded-lg p-3"
+              className="border rounded-lg p-3 w-full focus:outline-indigo-500"
               value={email}
               onChange={handleEmail} 
             />
           </div> 
 
-          <div className='w-full p-4'>
+          <div className='w-full pb-16'>
             <input 
               type="password" 
               placeholder="Password" 
-              className="border rounded-lg p-3"
+              className="border rounded-lg p-3 w-full focus:outline-indigo-500"
               value={password}
               onChange={handlePassword}
             />
           </div>
 
           {error && (
-            <div className='grid sm:grid-cols-1 md:grid-cols-4 lg:grid-cols-8 p-4'>
-              <div className="col-span-2 lg:col-span-4 text-red-500">{error}</div>
+            <div className=''>
+              <div className="col-span-2 lg:col-span-4 text-red-500 text-sm">{error}</div>
             </div>
           )}
-
+          
           <div className=''>
-            <form onSubmit={handleSubmit} className='flex flex-col gap-4 col-span-2 lg:col-span-4'>
+            <div className='flex flex-col gap-2 col-span-2 lg:col-span-4 '>
               <button type="submit" className="rounded bg-indigo-400 px-4 py-2 hover:bg-indigo-500 text-white">
                 Login
               </button>
-              <Link href={'/register'} >
-              <div className="border rounded-lg p-2 text-center hover:bg-slate-100">
-                Register
-            </div>
-            </Link>
-            </form>       
+                <Link href={'/register'} >
+                  <div className="border rounded-lg p-2 text-center hover:bg-slate-100">
+                    Register
+                  </div>
+                </Link>
+            </div>       
           </div>
         </div>
-      </div>
-
+      </form>
   );
 };
 

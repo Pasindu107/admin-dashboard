@@ -5,6 +5,7 @@ import { usePathname } from "next/navigation";
 import Sidebar from "@/components/Sidebar";
 import Header from "@/components/Header";
 import { useState } from "react";
+import { AuthProvider } from "@/src/context/AuthContext";
 
 export default function ClientLayout({ children }) {
   const pathname = usePathname();
@@ -12,14 +13,6 @@ export default function ClientLayout({ children }) {
   const isRegisterPage = pathname === '/register';
 
 
-  // // Define the headerText state variable
-  // const [headerText, setHeaderText] = useState();
-
-  // // Function to update header text
-  // const updateHeaderText = (text) => {
-  //   setHeaderText(text);
-  // };
-  
 
 
   return (
@@ -35,7 +28,9 @@ export default function ClientLayout({ children }) {
             <Header />
           </div>
         )}
+        <AuthProvider>
         <div className="p-4 flex-grow bg-white rounded-[10px] overflow-auto">{children}</div>
+        </AuthProvider>
       </div>
     </div>
   );
