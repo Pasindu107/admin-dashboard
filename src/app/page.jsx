@@ -7,7 +7,7 @@ const page = () => {
     <ProtectedRoute>
     <div>
       Dashboard
-      <LogOut />
+      
     </div>
     </ProtectedRoute>
  

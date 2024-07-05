@@ -62,8 +62,8 @@ const Login = () => {
         // Redirect or navigate to another page upon successful login if needed
         router.push('/');
 
-        console.log(result.Token);
-        console.log(result.SupCode);
+        //console.log(result.Token);
+        //console.log(result.SupCode);
 
 
       } else {

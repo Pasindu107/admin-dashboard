@@ -125,7 +125,7 @@ export default function ReimFileUpload() {
             <div className='content-center p-2 text-sm'>
                 Select Date
             </div>
-            <div className='col-span-2 border rounded-lg'>
+            <div className='col-span-2 border rounded-lg cursor-pointer'>
                 <ReimDatePicker onDateChange={handleDateChange} />
             </div>
           </div>

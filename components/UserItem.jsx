@@ -27,10 +27,18 @@ const UserItem = () => {
 
         <DropdownMenu>
           <DropdownMenuTrigger>
-          <div className='avatar rounded-full min-h-10 min-w-10 bg-black text-white font-[700]
-            flex items-center justify-center'>
-            <p>PB</p>
-          </div>
+            <div className='flex gap-3'>
+              <div className='flex flex-col content-center'>
+                <div className='text-gray-700 content-center text-[14px] text-right hidden sm:block md:block'>Pasindu Bhanuka</div>
+                <div className='text-gray-500 content-center text-[10px] text-right hidden sm:block md:block'>Pasindu@gmail.com</div>
+              </div>
+
+                <div className='avatar rounded-full min-h-10 min-w-10 bg-black text-white font-[700]
+                 flex items-center justify-center'>
+                    <p>PB</p>
+                </div>
+            </div>
+          
           </DropdownMenuTrigger>
           <DropdownMenuContent>
             <DropdownMenuLabel>My Account</DropdownMenuLabel>

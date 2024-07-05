@@ -9,8 +9,8 @@ import React, { useEffect, useState } from "react";
 
 // Function to fetch data from the API
 const fetchData = async () => {
-  const token ="eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6IlBhc2luZHUiLCJpYXQiOjE3MTYwMTMyOTQsImV4cCI6MzE3MjYwNDU1Njk0fQ.oqjRfBHwna323gz1bh00niCpcA0efJMNe-NMQ50m0CQ";
-  //const token = localStorage.getItem('token');
+  //const token ="eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6IlBhc2luZHUiLCJpYXQiOjE3MTYwMTMyOTQsImV4cCI6MzE3MjYwNDU1Njk0fQ.oqjRfBHwna323gz1bh00niCpcA0efJMNe-NMQ50m0CQ";
+  const token = localStorage.getItem('token');
   const scode = 0
   
   try {
@@ -177,7 +177,7 @@ export default function Data() {
 
                 key !== "ResetRequest" && (   //remove ResetRequest coloumn
 
-                <th key={index} className="p-3 ">
+                <th key={index} className="p-4 ">
                   {key}
                 </th>)
                 ))}
@@ -191,7 +191,7 @@ export default function Data() {
                 fieldName !== "ResetRequest" && ( //remove ResetRequest coloumn
                 <td
                   key={cellIndex}
-                  className= {`text-sm p-3 text-center
+                  className= {`text-sm p-4 text-center
                   ${fieldName ==="CompanyType" || fieldName ==="SupplierName" ? "hover:bg-gray-100 cursor-pointer" : ""} 
                   ${fieldName === "BankInfor" ? "hover:text-red-500 focus:text-red-500 cursor-pointer": ""}`}
                   onClick={() => handleCellClick(item, fieldName)}

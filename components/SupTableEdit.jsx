@@ -26,7 +26,7 @@ const StyledBadge = styled(Badge)(() => ({
   '& .MuiBadge-badge': {
     right: -8,
     top: 20,
-
+    size: 6,
     padding: '0 4px',
   },
 }));
@@ -94,14 +94,16 @@ const isValidEmail = (email) => {
         <Dialog open={dialogOpen} onOpenChange={setDialogOpen}>
         <DialogTrigger asChild>
 
-        <Button variant="secondary" className={` rounded-full  ${SupCode && SupCode.trim() !== '' ? "bg-green-200 hover:bg-green-400" : "bg-red-200 hover:bg-red-400"}`} >
+        <Button variant="secondary" className={` rounded-full w-8 h-8  ${SupCode && SupCode.trim() !== '' ? "bg-green-200 hover:bg-green-400" : "bg-red-200 hover:bg-red-400"}`} >
           {SupCode && SupCode.trim() !== '' ? (   
                                  ResetRequest === 1 ? (
                                    <StyledBadge badgeContent="1" color="error">
-                                      <Pencil  className='size-3' />
+                                      <Pencil  className='size-3 ' />
                                    </StyledBadge>
                                  ) : (
-                                      <Pencil className='size-3' />
+                                  <div>
+                                      <Pencil className='size-3 ' />
+                                  </div>
                                  )                               
                           ) : (
                                 <div className='inline-flex'>
@@ -162,7 +164,7 @@ const isValidEmail = (email) => {
               name="userName"
               value={formData.userName} 
               onChange={handleChange}         
-              className="col-span-3"
+              className="col-span-3 "
             />
           </div>
           <div className="grid grid-cols-4 items-center gap-4">
@@ -180,7 +182,7 @@ const isValidEmail = (email) => {
           </div>
         </div>
         <DialogFooter>
-        <Button type="submit">Submit</Button>
+        <Button type="submit" className="bg-indigo-500">Submit</Button>
         </DialogFooter>
         <p className={`mt-2 ${message === 'Profile updated successfully' ? 'text-green-500' : 'text-red-500'}`}>{message}</p>
 

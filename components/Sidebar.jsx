@@ -46,7 +46,7 @@ const Sidebar = ({ updateHeaderText }) => {
           </button>          
         
         <Link href={"/sales"}>
-        <button
+        {/* <button
           className={`w-full gap-4 py-3 my-3 bg-gray-50 hover:bg-blue-950 hover:text-white rounded-lg  p-2 flex items-center justify-between cursor-pointer 
           `}
           >
@@ -55,7 +55,7 @@ const Sidebar = ({ updateHeaderText }) => {
             <div className=' w-11/12  text-left'>
               Sales
             </div>  
-          </button> 
+          </button>  */}
         </Link>
         <Link href={"/items"}>
           <button className={`w-full gap-4 py-3 my-3 bg-gray-50 hover:bg-blue-950 hover:text-white rounded-lg  p-2 flex items-center justify-between cursor-pointer
