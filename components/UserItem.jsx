@@ -11,6 +11,8 @@ import {
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu"
 import Link from 'next/link';
+import LogOut from './LogOut';
+
 
 
 
@@ -33,8 +35,8 @@ const UserItem = () => {
           <DropdownMenuContent>
             <DropdownMenuLabel>My Account</DropdownMenuLabel>
             <DropdownMenuSeparator />
-            <DropdownMenuItem><Link href={'/profile'}>Profile</Link></DropdownMenuItem>
-            <Link href={'/login'} className='cursor-pointer'><DropdownMenuItem>Logout</DropdownMenuItem></Link>
+            <DropdownMenuItem className='cursor-pointer hover:bg-slate-100'><Link href={'/profile'}>Profile</Link></DropdownMenuItem>
+            <Link href={'/login'}><DropdownMenuItem  className='cursor-pointer hover:bg-slate-100'><LogOut /></DropdownMenuItem></Link>
  
           </DropdownMenuContent>
         </DropdownMenu>

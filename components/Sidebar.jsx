@@ -36,10 +36,10 @@ const Sidebar = ({ updateHeaderText }) => {
           <button  
             type="button"
             onClick={() => router.push('/')}
-            className={`gap-2 px-2 py-3 bg-gray-50 hover:bg-blue-950 hover:text-white  rounded-lg my-3 p-2 grid  md:grid-cols-4 sm:grid-cols-3  grid-cols-2 items-center justify-between cursor-pointer'
+            className={`w-full gap-4 py-3 my-3 bg-gray-50 hover:bg-blue-950 hover:text-white rounded-lg  p-2 flex items-center justify-between cursor-pointer'
              `}>
-            <HomeIcon />
-            <div className='' >    
+            <HomeIcon className='w-1/12' />
+            <div className=' w-11/12  text-left'>    
               Dashboard
             </div>
                
@@ -47,52 +47,52 @@ const Sidebar = ({ updateHeaderText }) => {
         
         <Link href={"/sales"}>
         <button
-          className={`gap-2 px-2 py-3 w-full bg-gray-50 hover:bg-blue-950 hover:text-white rounded-lg my-3 p-2 grid md:grid-cols-4 sm:grid-cols-3 grid-cols-2 items-center justify-between cursor-pointer 
+          className={`w-full gap-4 py-3 my-3 bg-gray-50 hover:bg-blue-950 hover:text-white rounded-lg  p-2 flex items-center justify-between cursor-pointer 
           `}
           >
 
-            <BarChart /> 
-            <div className=''>
+            <BarChart className='w-1/12' /> 
+            <div className=' w-11/12  text-left'>
               Sales
             </div>  
           </button> 
         </Link>
         <Link href={"/items"}>
-          <button className={`gap-2 px-2 py-3 w-full bg-gray-50 hover:bg-blue-950 hover:text-white rounded-lg my-3 p-2 grid md:grid-cols-4 sm:grid-cols-3  grid-cols-2 items-center justify-between cursor-pointer
+          <button className={`w-full gap-4 py-3 my-3 bg-gray-50 hover:bg-blue-950 hover:text-white rounded-lg  p-2 flex items-center justify-between cursor-pointer
           `}
           >
-            <ListChecks /> 
-            <div className=''>
+            <ListChecks className='w-1/12' /> 
+            <div className=' w-11/12  text-left'>
               Items
             </div>  
           </button> 
         </Link>
         <Link href={"/supplier"}>
-          <button className={`gap-2 px-2 py-3 bg-gray-50 hover:bg-blue-950 hover:text-white rounded-lg my-3 p-2 grid md:grid-cols-4 sm:grid-cols-3  grid-cols-2 items-center justify-between cursor-pointer
+          <button className={`w-full gap-4 py-3 my-3 bg-gray-50 hover:bg-blue-950 hover:text-white rounded-lg  p-2 flex items-center justify-between cursor-pointer
           `}
           >
-            <Users /> 
-            <div className=''>
+            <Users className='w-1/12' /> 
+            <div className=' w-11/12  text-left'>
               Supplier
             </div>  
           </button> 
         </Link>    
         <Link href={"/uploadpurchase"}>
-          <button className={`gap-2 px-2 py-3 bg-gray-50 hover:bg-blue-950 hover:text-white rounded-lg my-3 p-2 grid md:grid-cols-4 sm:grid-cols-3  grid-cols-2 items-center justify-between cursor-pointer
+          <button className={`w-full gap-4 py-3 my-3 bg-gray-50 hover:bg-blue-950 hover:text-white rounded-lg  p-2 flex items-center justify-between cursor-pointer
           `}
           >
-            <Upload /> 
-            <div className=''>
+            <Upload className='w-1/12' /> 
+            <div className=' w-11/12  text-left'>
               Upload Purchase
             </div>  
           </button> 
         </Link> 
         <Link href={"/reimsummery"}>
-          <button className={`gap-2 px-2 py-3 bg-gray-50 hover:bg-blue-950 hover:text-white rounded-lg my-3 p-2 grid md:grid-cols-4 sm:grid-cols-3  grid-cols-2 items-center justify-between cursor-pointer
+          <button className={`w-full gap-4 py-3 my-3 bg-gray-50 hover:bg-blue-950 hover:text-white rounded-lg  p-2 flex items-center justify-between cursor-pointer
           `}
           >
-            <Upload /> 
-            <div className=''>
+            <Upload className='w-1/12' /> 
+            <div className=' w-11/12 text-left '>
                 Upload Reimbursement
             </div>  
           </button> 

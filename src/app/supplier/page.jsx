@@ -1,5 +1,6 @@
 "use client";
 
+import ProtectedRoute from "@/components/ProtectRoute";
 import SupTableEdit from "@/components/SupTableEdit";
 import TablePopup from "@/components/TablePopup";
 import React, { useEffect, useState } from "react";
@@ -165,10 +166,11 @@ export default function Data() {
 
   // Render fetched data in a table
   return (
+    <ProtectedRoute>
     <div className="overflow-auto rounded-[10px] bg-white">
     <div className="w-[100px]">
       <table className="">
-        <thead className=" bg-blue-950 text-white">
+        <thead className=" bg-blue-950 text-white text-sm">
           <tr>
             {data.length > 0 &&
               Object.keys(data[0]).map((key, index) => (
@@ -210,6 +212,7 @@ export default function Data() {
         </div>
     </div>
     </div>
+    </ProtectedRoute>
     
   );
 }

@@ -1,5 +1,6 @@
 'use client'
 
+import ProtectedRoute from '@/components/ProtectRoute';
 import Data from '@/components/SupTable';
 import React, { useState } from 'react';
 
@@ -46,6 +47,8 @@ const Page = () => {
   };
 
   return (
+    <ProtectedRoute>
+    
     <form onSubmit={handleSubmit}>
       <label>
         Date:
@@ -88,6 +91,7 @@ const Page = () => {
       <br />
       <button type="submit">Submit</button>
     </form>
+    </ProtectedRoute>
   );
 };
 

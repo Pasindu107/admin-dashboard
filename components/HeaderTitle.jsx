@@ -46,7 +46,7 @@ import React from 'react'
 const HeaderTitle = () => {
   return (
     <div>
-      aaaaa
+      
     </div>
   )
 }

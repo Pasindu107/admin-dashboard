@@ -4,6 +4,8 @@ import React, { useEffect, useState } from "react";
 import {fetchData} from "@/src/app/api/itemReg"
 import { AiOutlineCheck } from "react-icons/ai";
 import { AiOutlineClose } from "react-icons/ai";
+import ProtectedRoute from "@/components/ProtectRoute";
+
 
 
 
@@ -21,6 +23,7 @@ export default function Data() {
 
 
   return (
+    <ProtectedRoute>
     <div>
         {/* <ItemSup /> */}
         <div className="overflow-auto rounded-[10px] ">
@@ -60,5 +63,6 @@ export default function Data() {
 
         </div>
     </div>
+    </ProtectedRoute>
   );
 }

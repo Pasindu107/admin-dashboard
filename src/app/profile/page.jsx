@@ -9,9 +9,12 @@ import {
   TableHeader,
   TableRow,
 } from "@/components/ui/table"
+import ProtectedRoute from '@/components/ProtectRoute'
 
 const page = () => {
+ 
   return (
+    <ProtectedRoute>
     <Table>
   <TableCaption>A list of your recent invoices.</TableCaption>
   <TableHeader>
@@ -31,7 +34,9 @@ const page = () => {
     </TableRow>
   </TableBody>
 </Table>
+</ProtectedRoute>
   )
+  
 }
 
 export default page

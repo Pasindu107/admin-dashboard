@@ -1,20 +1,17 @@
-import React from 'react';
+import LogOut from '@/components/LogOut'
+import ProtectedRoute from '@/components/ProtectRoute'
+import React from 'react'
 
-
-const page = async () => {
+const page = () => {
+  return (
+    <ProtectedRoute>
+    <div>
+      Dashboard
+      <LogOut />
+    </div>
+    </ProtectedRoute>
  
-
-  try {
-    return (
-      
-      <h1 className="p-4">
-        Dashboard
-      </h1>
-      
-    );
-  } catch (error) {
-    throw error;
-  }
-};
+  )
+}
 
 export default page

@@ -1,6 +1,6 @@
 "use client"; // Add this directive at the top
 
-import React, { useState } from 'react';
+import React, { useState  } from 'react';
 import { useRouter } from 'next/navigation';
 import Link from 'next/link';
 
@@ -9,6 +9,7 @@ const Login = () => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [error, setError] = useState(null);
+
 
   const handleEmail = (e) => {
     setEmail(e.target.value);
@@ -56,9 +57,15 @@ const Login = () => {
       if (result.Success) {
         console.log('Login successful');
         localStorage.setItem('token', result.Token);
+        localStorage.setItem('SupCode', result.SupCode)
+
         // Redirect or navigate to another page upon successful login if needed
         router.push('/');
-        //console.log(result.Token);
+
+        console.log(result.Token);
+        console.log(result.SupCode);
+
+
       } else {
         setError('Login failed. Please check your credentials.');
       }
