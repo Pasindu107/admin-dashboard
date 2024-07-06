@@ -23,7 +23,7 @@ export default function ItemTable() {
     <div className="overflow-auto rounded-[10px] bg-green-300">
         <div className=" bg-red-300">
             <table className="">
-                <thead className=" bg-blue-950 text-white ">
+                <thead className=" bg-indigo-500 text-white ">
                 <tr>
                     {data.length > 0 &&
                     Object.keys(data[0]).map((key, index) => (

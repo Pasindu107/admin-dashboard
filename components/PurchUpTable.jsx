@@ -25,7 +25,7 @@ const PurchUpTable = () => {
                 <div className="overflow-auto shadow-lg rounded-lg">
                     <div className="min-w-full">
                         <table className='min-w-full bg-white'>
-                            <thead className="bg-blue-950 text-white">
+                            <thead className="bg-indigo-400 text-white">
                                 <tr>
                                     {Array.isArray(data) && data.length > 0 &&
                                         Object.keys(data[0]).map((key, index) => (

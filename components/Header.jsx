@@ -42,8 +42,8 @@ const Header = ({ headerText }) => {
       </div>
       <div ref={sidebarRef} className={
         menuOpen
-          ? "fixed  left-0 top-0 w-[65%] h-screen bg-blue-950 text-white p-4 ease-in-out duration-500"
-          : "fixed left-[-100%] top-0 p-10 ease-in-out duration-500"
+          ? "fixed  left-0 top-0 w-[65%] h-screen bg-blue-950 text-white p-4 ease-in-out duration-300"
+          : "fixed left-[-100%] top-0 p-10 ease-in-out duration-400 h-full"
       }>
 
         <div onClick={handleNav} ><MobileSidebar /></div>

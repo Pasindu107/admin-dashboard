@@ -9,7 +9,7 @@ const MobileSidebar = () => {
             MOBILE APP
         </div>
          <Link href={"/"}>
-          <div className='flex-none gap-4 hover:bg-gray-100 hover:text-black rounded-lg my-3 p-2 flex items-center cursor-pointer'>
+          <div className='flex-none gap-4 ml-4 hover:bg-gray-100 hover:text-black rounded-lg my-3 p-2 flex items-center cursor-pointer'>
             <HomeIcon />
             <div className=''>
               Home
@@ -18,7 +18,7 @@ const MobileSidebar = () => {
           </div>          
         </Link>
         <Link href={"/sales"}>
-          <div className='flex-none gap-4 px-2 py-3  hover:bg-gray-100 hover:text-black rounded-lg my-3 p-2 flex items-center cursor-pointer'>
+          <div className='flex-none gap-4 px-2 py-2 ml-4 hover:bg-gray-100 hover:text-black rounded-lg my-3 p-2 flex items-center cursor-pointer'>
             <BarChart /> 
             <div className=''>
               Sales
@@ -26,7 +26,7 @@ const MobileSidebar = () => {
           </div> 
         </Link>
         <Link href={"/items"}>
-          <div className='flex-none gap-4 px-2 py-3 grow hover:bg-gray-100 hover:text-black rounded-lg my-3 flex items-center cursor-pointer'>
+          <div className='flex-none gap-4 px-2 py-2 ml-4 grow hover:bg-gray-100 hover:text-black rounded-lg my-3 flex items-center cursor-pointer'>
             <ListChecks /> 
             <div className=''>
               Items
@@ -34,7 +34,7 @@ const MobileSidebar = () => {
           </div> 
         </Link>
         <Link href={"/supplier"}>
-          <div className='flex-none gap-4 px-2 py-3  hover:bg-gray-100 hover:text-black rounded-lg my-3 p-2 flex items-center grow cursor-pointer'>
+          <div className='flex-none gap-4 px-2 py-2 ml-4  hover:bg-gray-100 hover:text-black rounded-lg my-3 p-2 flex items-center grow cursor-pointer'>
             <ListChecks /> 
             <div className=''>
               Supplier
@@ -45,7 +45,7 @@ const MobileSidebar = () => {
             
         </div>
         <Link href={"/login"}>
-          <div className='flex-none gap-4 px-2 py-3  hover:bg-gray-100 hover:text-black rounded-lg my-3 p-2 flex items-center grow cursor-pointer'>
+          <div className='flex-none gap-4 px-2 py-2 ml-4  hover:bg-gray-100 hover:text-black rounded-lg my-3 p-2 flex items-center grow cursor-pointer'>
             <ListChecks /> 
             <div className=''>
               Log Out

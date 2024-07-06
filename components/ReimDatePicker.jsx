@@ -22,7 +22,7 @@ const ReimDatePicker = ({onDateChange}) => {
                 type='date'
                 value={date}
                 onChange={handleChange} 
-                className=' rounded-lg p-2 w-full text-sm cursor-pointer '
+                className=' rounded-lg p-2 w-full text-sm cursor-pointer'
             />
         </div>
     )

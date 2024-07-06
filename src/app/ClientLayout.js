@@ -16,7 +16,7 @@ export default function ClientLayout({ children }) {
 
 
   return (
-    <div className="flex h-screen bg-slate-200">
+    <div className="flex h-screen bg-slate-100">
       {!isLoginPage && !isRegisterPage && (
         <div className="md:pl-2 lg:pl-2 xl:pl-2 py-2">
           <Sidebar />
@@ -29,7 +29,7 @@ export default function ClientLayout({ children }) {
           </div>
         )}
         
-        <div className="p-4 flex-grow bg-white rounded-[10px] overflow-auto">{children}</div>
+        <div className="p-2 flex-grow overflow-auto">{children}</div>
         
       </div>
     </div>

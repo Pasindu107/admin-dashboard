@@ -170,7 +170,7 @@ export default function Data() {
     <div className="overflow-auto rounded-[10px] bg-white">
     <div className="w-[100px]">
       <table className="">
-        <thead className=" bg-blue-950 text-white text-sm">
+        <thead className=" bg-indigo-400 text-white text-sm">
           <tr>
             {data.length > 0 &&
               Object.keys(data[0]).map((key, index) => (
