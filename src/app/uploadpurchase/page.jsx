@@ -7,7 +7,7 @@ import ProtectedRoute from '@/components/ProtectRoute'
 const page = () => {
   return (
     <ProtectedRoute>
-    <div className='flex flex-col gap-4'>
+    <div className='grid lg:grid-cols-2 gap-4'>
         <div className="">
            <PurchFileUpload  />
         </div>

@@ -21,7 +21,7 @@ const PurchUpTable = () => {
 
     return (
         <div className='mx-auto'>
-            <div className='grid lg:grid-cols-2 gap-4'>
+            <div className=' gap-4'>
                 <div className="overflow-auto shadow-lg rounded-lg">
                     <div className="min-w-full">
                         <table className='min-w-full bg-white'>
@@ -50,9 +50,7 @@ const PurchUpTable = () => {
                         </table>
                     </div>
                 </div>
-                <div className="shadow-lg rounded-lg text-center">
-                    {/* Additional content can go here */}
-                </div>
+
             </div>
         </div>
     );

@@ -4,7 +4,7 @@ import Link from 'next/link'
 
 
 import { useState } from 'react'
-import SButton from './Button'
+
 import { useRouter } from 'next/navigation'
 
 
