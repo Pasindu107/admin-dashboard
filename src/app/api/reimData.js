@@ -22,7 +22,7 @@ const reimData = async () => {
         }
 
         const data = await response.json();
-        console.log("Fetched data:", data); // Debug: Log the entire fetched data
+        
         return data.Data || []; // Ensure 'data.Data' exists or return an empty array
         
     } catch (error) {

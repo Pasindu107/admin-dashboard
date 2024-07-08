@@ -14,7 +14,7 @@ const fetchData = async () => {
             "http://localhost:8000/item/allitemsreg", fieldData
         );
         const data = await response.json();
-        console.log(data.Data);
+        //console.log(data.Data);
         return data.Data;
         
     } catch (error) {

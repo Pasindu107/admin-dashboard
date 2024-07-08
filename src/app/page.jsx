@@ -1,5 +1,7 @@
+//import { AChart } from '@/components/AreaChart'
 import { BarChart1 } from '@/components/BarChart1'
-import LogOut from '@/components/LogOut'
+import { BarChart2 } from '@/components/Barchart2'
+//import LogOut from '@/components/LogOut'
 import { PieChart1 } from '@/components/PieChart1'
 import ProtectedRoute from '@/components/ProtectRoute'
 import React from 'react'
@@ -9,14 +11,18 @@ const page = () => {
     <ProtectedRoute>
 
 
-    <div className='grid grid-cols-2 gap-4 mt-2 lg:grid-cols-3'>
+    <div className='grid grid-cols-1 lg:grid-cols-3 sm:grid-cols-1 gap-4'>
 
           <div className=''>
-            <BarChart1 />
+            {/* <BarChart1 /> */}
+            <BarChart2 />
           </div>
           <div className=''>
             <PieChart1 />
-          </div>     
+          </div> 
+          <div>
+            {/* <AChart /> */}
+          </div>    
     </div>
 
 

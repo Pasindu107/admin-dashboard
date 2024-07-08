@@ -16,7 +16,7 @@ export default function ClientLayout({ children }) {
 
 
   return (
-    <div className="flex h-screen bg-slate-100">
+    <div className="flex h-screen bg-indigo-50">
       {!isLoginPage && !isRegisterPage && (
         <div className="md:pl-2 lg:pl-2 xl:pl-2 py-2">
           <Sidebar />

@@ -110,14 +110,6 @@ export default function PurchFileUpload() {
 
     }
 
-
-
-
-
-
-    
-
-
   };
 
   return (

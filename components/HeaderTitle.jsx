@@ -1,52 +1,47 @@
-// 'use client'
+'use client'
 
-// // components/HeaderTitle.jsx
-// import { useRouter } from 'next/router';
-// import { useEffect, useState } from 'react';
+import React, { useState, useEffect } from 'react'
+import { usePathname } from 'next/navigation'
 
-
-// const HeaderTitle = () => {
-//   const [title, setTitle] = useState('');
-//   const router = useRouter();
-
-//   useEffect(() => {
-//     if (router.pathname) {
-//       switch (router.pathname) {
-//         case '/':
-//           setTitle('Home');
-//           break;
-//         case '/items':
-//           setTitle('Items');
-//           break;
-//         case '/sales':
-//           setTitle('Sales');
-//           break;
-//         case '/supplier':
-//           setTitle('Supplier');
-//           break;
-//         case '/uploadpurchase':
-//           setTitle('Upload Purchase');
-//           break;
-//         case '/uploadreimsummery':
-//           setTitle('Upload Summary');
-//           break;
-//         default:
-//           setTitle('Page');
-//       }
-//     }
-//   }, [router.pathname]);
-
-//   return <h1>{title}</h1>;
-// };
-
-// export default HeaderTitle;
-
-import React from 'react'
+const sidebarItems = [
+  {
+    name: "Dashboard",
+    href: "/",
+  },
+  {
+    name: "Items",
+    href: "/items",
+  },
+  {
+    name: "Supplier",
+    href: "/supplier",
+  },
+  {
+    name: "Upload Purchase",
+    href: "/uploadpurchase",
+  },
+  {
+    name: "Reimbursement",
+    href: "/reimsummery",
+  },
+];
 
 const HeaderTitle = () => {
+  const pathname = usePathname();
+  const [activeLink, setActiveLink] = useState('');
+
+  useEffect(() => {
+    const currentItem = sidebarItems.find(item => item.href === pathname);
+    if (currentItem) {
+      setActiveLink(currentItem.name);
+    } else {
+      setActiveLink(''); // Set default value if no matching pathname is found
+    }
+  }, [pathname]);
+
   return (
     <div>
-      
+      <h1 className='text-lg text-gray-400'>{activeLink}</h1>
     </div>
   )
 }

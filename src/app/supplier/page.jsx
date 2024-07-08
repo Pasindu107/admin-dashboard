@@ -170,7 +170,7 @@ export default function Data() {
     <div className="overflow-auto rounded-[10px] bg-white">
     <div className="w-[100px]">
       <table className="">
-        <thead className=" bg-indigo-400 text-white text-sm">
+        <thead className=" bg-indigo-500 text-white text-sm">
           <tr>
             {data.length > 0 &&
               Object.keys(data[0]).map((key, index) => (
@@ -199,7 +199,7 @@ export default function Data() {
                   {item[fieldName]}
                 </td>)
               ))}
-              <td className="pr-1 sticky right-0 " >
+              <td className="pr-3 sticky right-0 " >
                 <SupTableEdit email={item.PrimaryEmailAddress} SupCode={item.SupplierCode} ResetRequest={item.ResetRequest}
                  />
               </td>
