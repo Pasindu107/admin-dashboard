@@ -115,7 +115,7 @@ export default function PurchFileUpload() {
   return (
     <div className='grid'>
       <div className='w-full'>
-        <div className='grid bg-white shadow-lg rounded-lg p-4'>
+        <div className='grid bg-white rounded-lg p-4'>
           <div className='grid sm:grid-cols-1 md:grid-cols-4 lg:grid-cols-8 p-4'>
             <div className=' p-2 text-sm'>Supplier</div>
             <div className='col-span-2 lg:col-span-4'><PurchComboBox onEmailSelect={handleEmailSelect} onSupCodeSelect={handlesupCodeSelect} onSupNameSelect={handlesupNameSelect} /></div>

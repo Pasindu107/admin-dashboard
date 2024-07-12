@@ -10,7 +10,7 @@ import Header from "@/components/Header";
 export default function ClientLayout({ children }) {
   const pathname = usePathname();
   const isLoginPage = pathname === '/login';
-  const isRegisterPage = pathname === '/register';
+  const isRegisterPage = pathname === '/signup';
 
 
 

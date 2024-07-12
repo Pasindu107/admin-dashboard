@@ -1,18 +1,20 @@
 "use client"; // Add this directive at the top
 
-import React, { useState  } from 'react';
+import React, { useContext, useState  } from 'react';
 import { useRouter } from 'next/navigation';
 import Link from 'next/link';
+import { AuthContext } from '@/context/AuthContext';
 
 const Login = () => {
   const router = useRouter();
-  const [email, setEmail] = useState('');
+  const { setUsername, setEmail } = useContext(AuthContext);
+  const [userName, setUserName] = useState('');
   const [password, setPassword] = useState('');
   const [error, setError] = useState(null);
 
 
-  const handleEmail = (e) => {
-    setEmail(e.target.value);
+  const handleUserName = (e) => {
+    setUserName(e.target.value);
   };
 
   const handlePassword = (e) => {
@@ -22,14 +24,14 @@ const Login = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
   
-    if (!email || !password) {
+    if (!userName || !password) {
       setError('Please enter Email and Password');
       return;
     }
   
     try {
       const loginData = {
-        username: email,
+        username: userName,
         userpassword: password
 
       };
@@ -58,12 +60,19 @@ const Login = () => {
         console.log('Login successful');
         localStorage.setItem('token', result.Token);
         localStorage.setItem('SupCode', result.SupCode)
+        console.log(result.Email)
+
+        setEmail(result.Email)
+        setUsername(userName);
+
 
         // Redirect or navigate to another page upon successful login if needed
         router.push('/');
 
         //console.log(result.Token);
         //console.log(result.SupCode);
+
+
 
 
       } else {
@@ -85,8 +94,8 @@ const Login = () => {
               type="text" 
               placeholder="Username" 
               className="border rounded-lg p-3 w-full focus:outline-indigo-500"
-              value={email}
-              onChange={handleEmail} 
+              value={userName}
+              onChange={handleUserName} 
             />
           </div> 
 
@@ -111,7 +120,7 @@ const Login = () => {
               <button type="submit" className="rounded bg-indigo-400 px-4 py-2 hover:bg-indigo-500 text-white">
                 Login
               </button>
-                <Link href={'/register'} >
+                <Link href={'/signup'} >
                   <div className="border rounded-lg p-2 text-center hover:bg-slate-100">
                     Register
                   </div>

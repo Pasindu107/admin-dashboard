@@ -58,9 +58,9 @@ export function PieChart1() {
   }, [])
 
   return (
-    <Card className="flex flex-col border-none">
+    <Card className="flex flex-col border-none h-full">
       <CardHeader className="items-center pb-0">
-        <CardTitle>      </CardTitle>
+        <CardTitle className="text-gray-400 text-xl font-normal">Pie Chart </CardTitle>
         <CardDescription>       </CardDescription>
       </CardHeader>
       <CardContent className="flex-1 pb-0">
@@ -68,7 +68,7 @@ export function PieChart1() {
           config={chartConfig}
           className="mx-auto aspect-square max-h-[250px]"
         >
-          <PieChart>
+          <PieChart className="">
             <ChartTooltip
               cursor={false}
               content={<ChartTooltipContent hideLabel />}
@@ -124,3 +124,26 @@ export function PieChart1() {
     </Card>
   )
 }
+// 'use client'
+
+// import * as React from 'react';
+// import { PieChart } from '@mui/x-charts/PieChart';
+
+// export default function PieChart1() {
+//   return (
+//     <div style={{ width: 400, height: 200 }}>
+//       <PieChart
+//         series={[
+//           {
+//             data: [
+//               { id: 0, value: 10, label: 'series A' },
+//               { id: 1, value: 15, label: 'series B' },
+//               { id: 2, value: 20, label: 'series C' },
+//             ],
+//           },
+//         ]}
+//       />
+//     </div>
+//   );
+// }
+

@@ -24,6 +24,10 @@ const sidebarItems = [
     name: "Reimbursement",
     href: "/reimsummery",
   },
+  {
+    name: "Profile",
+    href: "/profile",
+  },
 ];
 
 const HeaderTitle = () => {

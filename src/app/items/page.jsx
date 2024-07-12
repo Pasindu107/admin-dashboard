@@ -5,6 +5,7 @@ import {fetchData} from "@/src/app/api/itemReg"
 import { AiOutlineCheck } from "react-icons/ai";
 import { AiOutlineClose } from "react-icons/ai";
 import ProtectedRoute from "@/components/ProtectRoute";
+import { PieChart1 } from "@/components/PieChart1";
 
 
 
@@ -59,8 +60,8 @@ export default function Data() {
             </div>
         </div>
         <div >
-      
-
+    
+                    
         </div>
     </div>
     </ProtectedRoute>
