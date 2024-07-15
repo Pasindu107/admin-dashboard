@@ -31,6 +31,7 @@ export default function Data() {
   const [data, setData] = useState([]);
   const [addPopup, setAddPopup] = useState(false);
   const [popupData, setPopupData] = useState(null);
+  //const [isLoading, setIsLoading] = useState(false)
 
 
   // Fetch data when the component mounts
@@ -48,10 +49,11 @@ export default function Data() {
   
     const downloadImage = async (imageName) => {
       try {
+        
         const response = await fetch(`/api/supfiledown?imageName=${imageName}`);
         if (!response.ok) {
           throw new Error(`Error downloading image: ${response.statusText}`);
-        }    
+        }      
         const blob = await response.blob();
         const url = window.URL.createObjectURL(blob);
         const a = document.createElement('a');
@@ -61,9 +63,10 @@ export default function Data() {
         a.click();
         document.body.removeChild(a);
         window.URL.revokeObjectURL(url);
+        
       } catch (error) {
         if (error.message.includes("Error downloading image")) {
-          alert("file not found");
+          alert("File not found");
         } else {
           alert(`An error occurred: ${error.message}`);
         }
@@ -149,6 +152,7 @@ export default function Data() {
         break;
       case "BankInfor":
         downloadImage(item.BankInfor)
+        
         break;
       case "InsertDate":
         responseMessage = `Insert Date is: ${item.InsertDate}`;
@@ -159,6 +163,7 @@ export default function Data() {
         setAddPopup(false); // Close the popup for all other cell clicks
         
     }
+
     
   };
 
@@ -193,7 +198,7 @@ export default function Data() {
                   key={cellIndex}
                   className= {`text-sm p-4 text-center
                   ${fieldName ==="CompanyType" || fieldName ==="SupplierName" ? "hover:bg-gray-100 cursor-pointer" : ""} 
-                  ${fieldName === "BankInfor" ? "hover:text-red-500 focus:text-red-500 cursor-pointer": ""}`}
+                  ${fieldName === "BankInfor" ? `hover:text-blue-500 hover:underline cursor-pointer` : ""}`}
                   onClick={() => handleCellClick(item, fieldName)}
                 >
                   {item[fieldName]}

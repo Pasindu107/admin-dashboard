@@ -1,6 +1,6 @@
 'use client';
 
-import React, { useContext, useState, useEffect } from 'react';
+import React, {  useState, useEffect } from 'react';
 import {
   DropdownMenu,
   DropdownMenuContent,
@@ -11,32 +11,22 @@ import {
 } from "@/components/ui/dropdown-menu";
 import Link from 'next/link';
 import LogOut from './LogOut';
-import { AuthContext } from '@/context/AuthContext';
+
 
 const UserItem = () => {
-  const { username, email } = useContext(AuthContext);
   const [userName, setUserName] = useState('');
   const [userEmail, setUserEmail] = useState('');
 
   useEffect(() => {
-    const storedUsername = localStorage.getItem('username');
-    const storedEmail = localStorage.getItem('email');
-
-    if (storedUsername && storedEmail) {
-      console.log('Using username and email from local storage');
+    const storedUsername = localStorage.getItem('userName');
+    const storedEmail = localStorage.getItem('Email');
+    if (storedUsername) {
       setUserName(storedUsername);
-      setUserEmail(storedEmail);
-    } else {
-      console.log('Using username and email from context');
-      setUserName(username);
-      setUserEmail(email);
     }
-  }, [username, email]);
-
-  useEffect(() => {
-    console.log('Current username:', username);
-    console.log('Current email:', email);
-  }, [username, email]);
+    if (storedEmail) {
+      setUserEmail(storedEmail);
+    }
+  }, []);
 
   return (
     <div className='flex items-center gap-2'>

@@ -114,25 +114,25 @@ export default function ReimFileUpload() {
     <div className=''>
       <form  onSubmit={handleSubmit} className='w-full'>
         <div className='grid bg-white rounded-lg py-10 px-4'>
-          <div className='grid sm:grid-cols-1 md:grid-cols-4 lg:grid-cols-8 px-4 py-2 gap-4'>
-            <div className='p-2 text-sm '>Supplier</div>
+          <div className='grid sm:grid-cols-1 md:grid-cols-1 lg:grid-cols-1 px-4 py-2 gap-2'>
+            <div className='p-2 text-sm text-gray-400'>Supplier :</div>
             <div className='col-span-2 lg:col-span-6 md:col-span-3 '>
               <ReimComboBox onSupCodeSelect={handlesupCodeSelect} onEmailSelect={handleEmailSelect} />
             </div>
           </div>
 
-          <div className='grid sm:grid-cols-1 md:grid-cols-4 lg:grid-cols-8 px-4 py-2 gap-4'>
-            <div className='content-center p-2 text-sm'>
-                Select Date
+          <div className='grid sm:grid-cols-1 md:grid-cols-1 lg:grid-cols-1 px-4 py-2 gap-2'>
+            <div className='content-center p-2 text-sm text-gray-400'>
+                Select Date :
             </div>
-            <div className='col-span-3 border rounded-lg cursor-pointer'>
+            <div className='col-span-3 border rounded-lg cursor-pointer lg:w-1/2'>
                 <ReimDatePicker onDateChange={handleDateChange} />
             </div>
           </div>
 
-          <div className='grid sm:grid-cols-1 md:grid-cols-4 lg:grid-cols-8 px-4 py-2 gap-4'>
-            <div className='content-center p-2 text-sm'>
-              Description
+          <div className='grid sm:grid-cols-1 md:grid-cols-1 lg:grid-cols-1 px-4 py-2 gap-2'>
+            <div className='content-center p-2 text-sm text-gray-400'>
+              Description :
             </div>
             <Input 
               type="text" 
@@ -143,8 +143,8 @@ export default function ReimFileUpload() {
             />
           </div>
 
-          <div className='grid sm:grid-cols-1 md:grid-cols-4 lg:grid-cols-8 px-4 py-2 gap-4'>
-            <div className='p-2 text-sm'>Upload File</div>
+          <div className='grid sm:grid-cols-1 md:grid-cols-1 lg:grid-cols-1 px-4 py-2 gap-2'>
+            <div className='p-2 text-sm text-gray-400'>Upload File :</div>
             <div className='flex flex-col gap-4 col-span-2 lg:col-span-6'>
               <Input type="file" className='' onChange={handleFileChange} />
               <button type="submit" className={`rounded bg-indigo-400 px-4 py-2 hover:bg-indigo-500 text-white ${isLoading ? 'opacity-50 cursor-not-allowed' : ''}`}>

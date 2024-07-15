@@ -71,10 +71,10 @@ const ReimTable = () => {
                 
                     <div className="min-w-full grid grid-col bg-white overflow-auto rounded-lg">
                         <div className="flex justify-between py-2 ">
-                            <div className="p-2 ml-2 text-gray-500">
+                            {/* <div className="p-2 ml-2 text-gray-500">
                                 Reimbursement Table
-                            </div>
-                            <div className="content-center mr-2">
+                            </div> */}
+                            <div className="content-center mx-3 my-1">
                             <button onClick={downloadPDF} className="flex gap-2 py-2 px-5 bg-indigo-500 rounded-2xl text-white hover:bg-indigo-600 transition ease-in-out hover:-translate-y-px hover:scale-105 duration-300">
                                 <ArrowDownToLine className="w-4 h-4" />
                                <div className="text-sm">

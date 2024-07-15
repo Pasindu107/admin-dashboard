@@ -116,14 +116,14 @@ export default function PurchFileUpload() {
     <div className='grid'>
       <div className='w-full'>
         <div className='grid bg-white rounded-lg p-4'>
-          <div className='grid sm:grid-cols-1 md:grid-cols-4 lg:grid-cols-8 p-4'>
-            <div className=' p-2 text-sm'>Supplier</div>
+          <div className='grid sm:grid-cols-1 md:grid-cols-1 lg:grid-cols-1 p-4'>
+            <div className=' p-2 text-sm text-gray-400'>Supplier :</div>
             <div className='col-span-2 lg:col-span-4'><PurchComboBox onEmailSelect={handleEmailSelect} onSupCodeSelect={handlesupCodeSelect} onSupNameSelect={handlesupNameSelect} /></div>
           </div> 
 
-          <div className='grid sm:grid-cols-1 md:grid-cols-4 lg:grid-cols-8 p-4'>
-            <div className='content-center p-2 text-sm'>
-              PO Number
+          <div className='grid sm:grid-cols-1 md:grid-cols-1 lg:grid-cols-1 p-4'>
+            <div className='content-center p-2 text-sm text-gray-400'>
+              PO Number :
             </div>
             <Input 
               type="text" 
@@ -134,8 +134,8 @@ export default function PurchFileUpload() {
             />
           </div>
 
-          <div className='grid sm:grid-cols-1 md:grid-cols-4 lg:grid-cols-8 p-4'>
-            <div className='p-2 text-sm'>Upload File</div>
+          <div className='grid sm:grid-cols-1 md:grid-cols-1 lg:grid-cols-1 p-4'>
+            <div className='p-2 text-sm text-gray-400'>Upload File :</div>
             <form onSubmit={handleSubmit} className='flex flex-col gap-4 col-span-2 lg:col-span-4'>
               <Input type="file" className='' onChange={handleFileChange} />
               <button type="submit" className={`rounded bg-indigo-400 px-4 py-2 hover:bg-indigo-500 text-white ${isLoading ? 'opacity-50 cursor-not-allowed' : ''}`}>

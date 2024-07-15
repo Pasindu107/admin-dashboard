@@ -3,11 +3,11 @@
 import React, { useContext, useState  } from 'react';
 import { useRouter } from 'next/navigation';
 import Link from 'next/link';
-import { AuthContext } from '@/context/AuthContext';
+// import { AuthContext } from '@/context/AuthContext';
 
 const Login = () => {
   const router = useRouter();
-  const { setUsername, setEmail } = useContext(AuthContext);
+  // const { setUname, setEmail } = useContext(AuthContext);
   const [userName, setUserName] = useState('');
   const [password, setPassword] = useState('');
   const [error, setError] = useState(null);
@@ -60,10 +60,10 @@ const Login = () => {
         console.log('Login successful');
         localStorage.setItem('token', result.Token);
         localStorage.setItem('SupCode', result.SupCode)
-        console.log(result.Email)
 
-        setEmail(result.Email)
-        setUsername(userName);
+        localStorage.setItem('userName', userName)
+        localStorage.setItem('Email', result.Email)
+
 
 
         // Redirect or navigate to another page upon successful login if needed
