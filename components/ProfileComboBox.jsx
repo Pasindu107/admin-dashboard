@@ -42,18 +42,17 @@ const suppliers = [
 
 
 
-
-
-
-
-
-
-
-
-
-export function ProfileComboBox() {
+export function ProfileComboBox({onValueChange }) {
   const [open, setOpen] = React.useState(false);
   const [value, setValue] = React.useState("");
+
+  const handleSelect = (selectedValue) => {
+    setValue(selectedValue);
+    setOpen(false);
+    if (onValueChange) {
+      onValueChange(selectedValue); // Call the callback with the selected value
+    }
+  };
 
 
 
@@ -87,7 +86,9 @@ export function ProfileComboBox() {
                       key={supplier.value}
                       onSelect={() => {
                         setValue(supplier.value);
+                        handleSelect(supplier.value)
                         setOpen(false);
+                        
                       }}
                     >
                       <Check

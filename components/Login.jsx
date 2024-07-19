@@ -63,6 +63,7 @@ const Login = () => {
 
         localStorage.setItem('userName', userName)
         localStorage.setItem('Email', result.Email)
+        localStorage.setItem('UserRole', result.UserRole)
 
 
 
