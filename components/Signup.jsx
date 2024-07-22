@@ -2,9 +2,11 @@
 
 import React, { useState } from 'react';
 import { useRouter } from 'next/navigation';
+import { SignupComboBox } from './SignupComboBox';
 
 const Signup = () => {
   const router = useRouter();
+  const [selectedValue, setSelectedValue] = useState(null);
   const [signupData, setSignupData] = useState({
     userName: '',
     userPassword: '',
@@ -17,6 +19,11 @@ const Signup = () => {
   const handleChange = (e) => {
     const { name, value } = e.target;
     setSignupData({ ...signupData, [name]: value });
+  };
+
+  const handleValueChange = (value) => {
+    setSelectedValue(value);
+    // console.log("Selected Value:", value); // Handle the selected value as needed
   };
 
   const handleSubmit = async (e) => {
@@ -90,7 +97,7 @@ const Signup = () => {
           />
         </div>         
 
-        <div className='w-full pb-16'>
+        <div className='w-full'>
           <input 
             id='password'
             name='userPassword'
@@ -100,6 +107,10 @@ const Signup = () => {
             value={signupData.userPassword}
             onChange={handleChange}
           />
+        </div>
+
+        <div className=' pb-16'>
+          <SignupComboBox onValueChange={handleValueChange} />
         </div>
 
         {error && (

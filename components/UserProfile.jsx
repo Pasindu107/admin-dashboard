@@ -6,6 +6,7 @@ import { Label } from "@/components/ui/label";
 import { Switch } from "@/components/ui/switch";
 import { useRouter } from 'next/navigation';
 import { Checkbox } from '@/components/ui/checkbox';
+import Link from 'next/link';
 
 const items = [
   {
@@ -42,6 +43,11 @@ const items = [
       { id: "11", label: "Upload File" },
       { id: "12", label: "Download Reimbursement Table" },
     ],
+  },
+  {
+    id: "13",
+    label: "Profile",
+    subitems: [],
   },
 ];
 
@@ -142,7 +148,7 @@ const UserProfile = () => {
   return (
     <form onSubmit={handleSubmit} className='bg-white rounded-lg p-4 gap-4 h-full grid lg:grid-cols-3 overflow-auto'>
       <div className='space-y-4 h-full col-span-1'>
-        <div className='w-full'>
+        {/* <div className='w-full'>
           <input 
             type="text" 
             placeholder="Username" 
@@ -156,7 +162,16 @@ const UserProfile = () => {
             placeholder="Password" 
             className="border rounded-lg p-3 w-full focus:outline-indigo-500"
           />
+        </div> */}
+        <div className=''>
+            <Link href={'/signup'} >
+                <div className="border rounded-lg p-2 text-center text-sm hover:bg-slate-100">
+                    Create User
+                </div>
+            </Link>
         </div>
+
+
 
         <div className='w-full'>
           <ProfileComboBox onValueChange={handleValueChange} />
@@ -211,8 +226,14 @@ const UserProfile = () => {
               </div>
             ))}
           </div>
+          <div className='flex flex-col-reverse'>
+
+          </div>
+
         </div>
+        
       </div>
+      
     </form>
   );
 }
