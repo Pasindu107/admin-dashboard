@@ -6,15 +6,26 @@ import { SignupComboBox } from './SignupComboBox';
 
 const Signup = () => {
   const router = useRouter();
+  const [userName, setUserName] = useState('');
+  const [password, setPassword] = useState('');
+  const [email, setEmail] = useState('');
   const [selectedValue, setSelectedValue] = useState(null);
-  const [signupData, setSignupData] = useState({
-    userName: '',
-    userPassword: '',
-    Email: '',
-    supCode: '',
-    supVarify: 0
-  });
+  const [message , setMessage] = useState();
+
   const [error, setError] = useState(null);
+
+  const handleUserName = (e) => {
+    setUserName(e.target.value);
+  };
+
+  const handlePassword = (e) => {
+    setPassword(e.target.value);
+  };
+
+  const handleEmail = (e) => {
+    setEmail(e.target.value);
+  };
+
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -28,14 +39,23 @@ const Signup = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+    setMessage('')
+
+  const signupData = {
+          userName: userName,
+          userPassword: password,
+          Email: email,
+          RoleId: selectedValue
+    }
+
   
-    if (!signupData.userName || !signupData.userPassword || !signupData.Email || !signupData.supCode) {
+    if (!signupData.userName || !signupData.userPassword || !signupData.Email || !signupData.RoleId) {
       setError('Please enter your details');
       return;
     }
   
     try {
-      const response = await fetch('http://localhost:8000/login/reguser', {
+      const response = await fetch('http://localhost:8000/dashlogin/signup', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -45,9 +65,10 @@ const Signup = () => {
   
       const result = await response.json();
       if (result.Success) {
-        console.log('Signup successful');
+        console.log('Signup successfull');
+        setMessage('Signup successfull')
         // Redirect or navigate to another page upon successful signup if needed
-        router.push('/login');
+        // router.push('/login');
       } else {
         setError('Signup failed. Please check your credentials.');
       }
@@ -56,11 +77,21 @@ const Signup = () => {
       setError('An error occurred. Please try again.');
     }
   };
+
+  const handleBack = () => {
+    router.back();
+  };
+
+  const handleLogin = () => {
+    router.push('/login');
+  };
+
+
   
   return (
     <form onSubmit={handleSubmit} className='shadow-lg bg-white rounded-lg w-[500px] h-[600px] p-4'>   
       <div className='p-4 space-y-4 h-full'>
-        <div className='text-3xl font-bold text-gray-500'>Signup</div>
+        <div className='text-3xl font-bold text-gray-400 text-center'>Create User</div>
         <div className='w-full pt-10'>    
           <input 
             id='username'
@@ -68,8 +99,8 @@ const Signup = () => {
             type="text" 
             placeholder="Username" 
             className="border rounded-lg p-3 w-full focus:outline-indigo-500"
-            value={signupData.userName}
-            onChange={handleChange} 
+            value={userName}
+            onChange={handleUserName} 
           />
         </div> 
 
@@ -80,22 +111,11 @@ const Signup = () => {
             type="text" 
             placeholder="Email" 
             className="border rounded-lg p-3 w-full focus:outline-indigo-500"
-            value={signupData.Email}
-            onChange={handleChange} 
+            value={email}
+            onChange={handleEmail} 
           />
         </div> 
-
-        <div className='w-full'>
-          <input 
-            id='supCode'
-            name='supCode'
-            type="text" 
-            placeholder="Supplier Code" 
-            className="border rounded-lg p-3 w-full focus:outline-indigo-500"
-            value={signupData.supCode}
-            onChange={handleChange}
-          />
-        </div>         
+        
 
         <div className='w-full'>
           <input 
@@ -104,8 +124,8 @@ const Signup = () => {
             type="password" 
             placeholder="Set Password" 
             className="border rounded-lg p-3 w-full focus:outline-indigo-500"
-            value={signupData.userPassword}
-            onChange={handleChange}
+            value={password}
+            onChange={handlePassword}
           />
         </div>
 
@@ -118,12 +138,27 @@ const Signup = () => {
             {error}
           </div>
         )}
+
+        <div className='text-sm'>{message}</div>
         
         <div className=''>
           <div className='flex flex-col gap-2 col-span-2 lg:col-span-4 '>
             <button type="submit" className="rounded bg-indigo-400 px-4 py-2 hover:bg-indigo-500 text-white">
               Signup
             </button>
+          <div className='flex justify-between'>
+              <div>
+                  <button type="button" onClick={handleBack} className="ml-2 text-sm text-gray-400 hover:text-gray-600">
+                    Back
+                  </button>
+              </div>
+              <div>
+                  {/* <button type="button" onClick={handleLogin} className="mr-2 text-sm text-gray-400 hover:text-gray-600">
+                    Login
+                  </button> */}
+              </div>
+          </div>
+        
           </div>       
         </div>
       </div>

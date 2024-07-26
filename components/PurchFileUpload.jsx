@@ -1,8 +1,10 @@
 "use client";
 
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { Input } from "@/components/ui/input";
 import { PurchComboBox } from '@/components/PurchComboBox';
+import { fetchAuth } from "@/src/app/api/dashAuthApi";
+import DashAuthPopup from './DashAuthPopup';
 
 export default function PurchFileUpload() {
   const [file, setFile] = useState(null);
@@ -12,6 +14,29 @@ export default function PurchFileUpload() {
   const [selectedSupName, setSelectedSupName] = useState('');
   const [message, setMessage] = useState('');
   const [isLoading, setIsLoading] = useState(false);
+
+  const [authData, setAuthData] = useState([]);
+  const [isAuthorized, setIsAuthorized] = useState(false);
+  const [popupMessage, setPopupMessage] = useState("");
+  const [openPopup, setOpenPopup] = useState(false);
+
+
+  useEffect(() => {
+    const checkAuthorization = async () => {
+        try {
+            const roleId = localStorage.getItem('UserRole');
+            const profId = 8;
+            const data = await fetchAuth(roleId, profId);
+            setAuthData(data);
+            const isActive = data.some(item => item.Is_Active);
+            setIsAuthorized(isActive);
+        } catch (error) {
+            console.error("Error fetching authorization data:", error);
+        }
+    };
+    checkAuthorization();
+}, []);
+
 
   const handleFileChange = (e) => {
     setFile(e.target.files[0]);
@@ -34,6 +59,18 @@ export default function PurchFileUpload() {
   };
 
   const handleSubmit = async (e) => {
+    if (!isAuthorized) {
+      setPopupMessage('You are not authorized to perform this action!');
+      setOpenPopup(true);
+      setTimeout(() => {
+          setPopupMessage(''); // Clear message after showing
+          setOpenPopup(false);
+        }, 2000); // Adjust timeout as needed
+      return;
+  }
+
+
+
     e.preventDefault();
 
     if (!file || !poNumber|| !selectedEmail) {
@@ -146,6 +183,9 @@ export default function PurchFileUpload() {
           </div>
         </div>
       </div>
+      {openPopup && (
+                <DashAuthPopup openPopup={openPopup} closePopup={setOpenPopup} data={popupMessage} />
+            )}
     </div>
   );    
 }

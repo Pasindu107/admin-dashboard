@@ -8,7 +8,7 @@ const LogOut = () => {
 
   const handleLogout = () => {
     // Clear id and token from localStorage
-    localStorage.removeItem('SupCode');
+    localStorage.removeItem('UserRole');
     localStorage.removeItem('token');
 
     // Redirect to login page after logout

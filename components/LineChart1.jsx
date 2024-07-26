@@ -49,7 +49,7 @@ export function LineChart1() {
   }, [])
 
   return (
-    <Card className="max-h-full border-none">
+    <Card className="h-full border-none">
       <CardHeader>
         <CardTitle className="text-gray-400 text-xl font-normal">Supplier Registration</CardTitle>
         <CardDescription> </CardDescription>

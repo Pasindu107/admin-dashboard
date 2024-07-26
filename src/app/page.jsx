@@ -19,7 +19,7 @@ const page = () => {
     <ProtectedRoute>
 
 
-    <div className='grid grid-rows-2 grid-cols-1 lg:grid-cols-3 sm:grid-cols-1 gap-4'>
+    <div className='grid grid-rows-2 grid-cols-1 lg:grid-cols-3 sm:grid-cols-1 gap-2'>
 {/* 
           <div className=''>
             <BarChart1 />

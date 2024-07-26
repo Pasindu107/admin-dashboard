@@ -29,7 +29,7 @@ export default function ClientLayout({ children }) {
           </div>
         )}
         
-        <div className="p-2 flex-grow overflow-auto">{children}</div>
+        <div className=" flex-grow overflow-auto">{children}</div>
         
       </div>
     </div>

@@ -6,7 +6,7 @@ import React from 'react'
 const page = () => {
   return (
     <ProtectedRoute>
-    <div className='grid grid-cols-1 lg:grid-cols-2 gap-4'>
+    <div className='grid grid-cols-1 lg:grid-cols-2 gap-2'>
       <div className=''>
         <ReimFileUpload />
       </div>

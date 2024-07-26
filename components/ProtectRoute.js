@@ -1,30 +1,3 @@
-// "use client"
-
-// // components/ProtectedRoute.js
-
-// import React, { useEffect, useState } from 'react';
-// import { useRouter } from 'next/navigation';
-
-// const ProtectedRoute = ({ children }) => {
-//   const router = useRouter();
-
-
-//   useEffect(() => {
-//     const SupCode = localStorage.getItem('SupCode');
-
-//     if (!SupCode) {
-//       router.replace('/login');
-//     }
- 
-//   });
-
-
-
-//   return <>{children}</>;
-// };
-
-// export default ProtectedRoute;
-
 
 "use client";
 
@@ -50,10 +23,10 @@ const ProtectedRoute = ({ children }) => {
   const [message, setMessage] = useState('');
   const [redirectPath, setRedirectPath] = useState('');
   const [openPopup, setOpenPopup] = useState(false);
+  
 
   useEffect(() => {
     const checkAuthorization = async () => {
-      const SupCode = localStorage.getItem('SupCode');
       const roleId = localStorage.getItem('UserRole');
       const currentPath = pathname || '/';
 
@@ -67,7 +40,7 @@ const ProtectedRoute = ({ children }) => {
         return;
       }
 
-      if (!SupCode || !roleId) {
+      if (!roleId) {
         router.replace('/login');
         return;
       }
@@ -115,7 +88,12 @@ const ProtectedRoute = ({ children }) => {
   }, [message, loading, redirectPath, router]);
 
   if (loading) {
-    return <div>Loading...</div>;
+    return ( 
+              <div>
+                 
+                  
+               </div>
+    );
   }
 
   if (message) {

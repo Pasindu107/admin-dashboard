@@ -5,7 +5,7 @@ import React from 'react'
 const page = () => {
   return (
     <ProtectedRoute>
-    <div className='bg-white h-full rounded-lg'>
+    <div className='h-full rounded-lg'>
 
 
         <UserProfile />
