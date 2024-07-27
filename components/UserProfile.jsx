@@ -16,6 +16,7 @@ const UserProfile = () => {
   const [message, setMessage] = useState(null);
   const [error, setError] = useState(null);
   const [selectedValue, setSelectedValue] = useState(null);
+  const [userRole, setUserRole] = useState('')
 
   const router = useRouter();
 
@@ -36,7 +37,14 @@ const UserProfile = () => {
   const handleValueChange = (value) => {
     setMessage('');
     setError('');
+    setUserRole('');
     setSelectedValue(value);
+  };
+
+  const handleUserRole= (e) => {
+    setUserRole(e.target.value);
+    setMessage('');
+    setError('');
   };
 
   const fetchRoleData = async (roleId) => {
@@ -89,6 +97,7 @@ const UserProfile = () => {
 
     const profData = {
       RoleId: selectedValue,
+      RoleName: selectedValue === "0" ? userRole : '',
       ProfId: profIdList,
       Descript: labels,
       IsActive: isActiveArray,
@@ -100,7 +109,12 @@ const UserProfile = () => {
     }
 
     if (!profData.ProfId || !profData.Descript || !profData.IsActive) {
-      setError('Please fill in all details');
+      setError('Please fill all details');
+      return;
+    }
+
+    if (selectedValue === "0" && !profData.RoleName) {
+      setError('Please Enter New User Role');
       return;
     }
 
@@ -115,7 +129,13 @@ const UserProfile = () => {
 
       const result = await response.json();
       if (result.Success) {
-        setMessage('Profile Updated!');
+        if (selectedValue == "0") {
+          window.location.reload();
+          setMessage('New user Role Created!');
+        } else {
+          setMessage('Profile Updated!');
+        }
+
       } else {
         setError('Profile update failed!');
       }
@@ -139,18 +159,19 @@ const UserProfile = () => {
 
                                     
                       <div className="grid lg:grid-cols-2 gap-3 mb-4">
+                        <div className='w-full '>
+                            <ProfileComboBox onValueChange={handleValueChange} />
+                        </div>
                         <input
                           id="UserRole"
                           name="User Role"
                           type="text"
-                          placeholder="User Role"
+                          placeholder={selectedValue !== "0" ? '': 'Enter New User Role'}
                           className="shadow-sm rounded-lg p-2 w-full focus:outline-indigo-500"
-                          // value={email}
-                          // onChange={handleEmail}
+                          disabled={selectedValue !== "0"}
+                          value={userRole}
+                          onChange={handleUserRole}
                         />
-                        <div className='w-full '>
-                            <ProfileComboBox onValueChange={handleValueChange} />
-                        </div>
                       </div>
                       <div className="grid lg:grid-cols-2 gap-4">
                       {items.map(item => (

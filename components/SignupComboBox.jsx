@@ -24,27 +24,29 @@ import {
 } from "@/components/ui/popover";
 
 
-const suppliers = [
-    {
-        value: 1,
-        label: "Admin", 
-    },
-
-    {
-        value: 2,
-        label: "User", 
-    }
-
-]
-
-
-
-
+import {fetchRole} from '@/src/app/api/ProfComboBoxData'
 
 
 export function SignupComboBox({onValueChange }) {
   const [open, setOpen] = React.useState(false);
   const [value, setValue] = React.useState("");
+  const [roleData, setRoleData] = React.useState([]);
+
+
+  React.useEffect(() => {
+    const fetchRoleData = async () => {
+      try {
+        const roleData = await fetchRole();
+
+        setRoleData(roleData);
+      } catch (error) {
+        console.error("Error fetching suppliers:", error);
+      }
+    };
+
+    fetchRoleData();
+  }, []);
+
 
   const handleSelect = (selectedValue) => {
     setValue(selectedValue);
@@ -69,7 +71,7 @@ export function SignupComboBox({onValueChange }) {
               className="w-full justify-between shadow-sm border-none"
             >
               {value
-                ? suppliers.find((supplier) => supplier.value === value)
+                ? roleData.find((role) => role.value === value)
                 ?.label
                 : "Select User Role..."}
               <ChevronsUpDown className="ml-2 h-4 w-4 shrink-0 opacity-50" />
@@ -79,14 +81,14 @@ export function SignupComboBox({onValueChange }) {
             <Command>
               <CommandInput placeholder="Search User Role..." />
               <CommandList>
-                <CommandEmpty>No supplier found.</CommandEmpty>
+                <CommandEmpty>No Role data found.</CommandEmpty>
                 <CommandGroup>
-                  {suppliers.map((supplier) => (
+                  {roleData.map((role) => (
                     <CommandItem
-                      key={supplier.value}
+                      key={role.value}
                       onSelect={() => {
-                        setValue(supplier.value);
-                        handleSelect(supplier.value)
+                        setValue(role.value);
+                        handleSelect(role.value)
                         setOpen(false);
                         
                       }}
@@ -94,10 +96,10 @@ export function SignupComboBox({onValueChange }) {
                       <Check
                         className={cn(
                           "mr-2 h-4 w-4",
-                          value === supplier.value ? "opacity-100" : "opacity-0"
+                          value === role.value ? "opacity-100" : "opacity-0"
                         )}
                       />
-                      {supplier.label}
+                      {role.label}
                     </CommandItem>
                   ))}
                 </CommandGroup>
