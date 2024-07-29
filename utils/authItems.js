@@ -18,7 +18,7 @@ const items = [
         { id: "6", label: "Download Image" },
       ],
     },
-    {
+    { 
       id: "7",
       label: "Purchase Details",
       subitems: [

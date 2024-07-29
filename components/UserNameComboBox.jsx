@@ -23,52 +23,47 @@ import {
   PopoverTrigger,
 } from "@/components/ui/popover";
 
-import {fetchRole} from '@/src/app/api/ProfComboBoxData'
+import {fetchUsername} from '@/src/app/api/UnameComboData'
 
 
 
 
 
-export function ProfileComboBox({onValueChange }) {
+export function UserNameComboBox({onValueChange }) {
   const [open, setOpen] = React.useState(false);
   const [value, setValue] = React.useState("");
-  const [roleData, setRoleData] = React.useState([]);
+  const [userData, setUserData] = React.useState([]);
 
 
 
-  React.useEffect(() => {
-    const fetchRoleData = async () => {
+    React.useEffect(() => {
+    console.log("useEffect called");
+    const fetchuserData = async () => {
       try {
-        const roleData = await fetchRole();
+        const UserData = await fetchUsername();
 
-         // Add the new option "New" with value "0"
-         const newRole = { value: "0", label: "Create New" };
-         const updatedRoleData = [newRole, ...roleData];
+         // Add the new option "New" with value "Create"
+         const newUser = { value: "Create", label: "Create New" };
+         const updatedUserData = [newUser, ...UserData];
 
-        setRoleData(updatedRoleData);
+         setUserData(updatedUserData);
       } catch (error) {
-        console.error("Error fetching Roles:", error);
+        console.error("Error fetching Users:", error);
       }
     };
 
-    fetchRoleData();
+    fetchuserData();
   }, []);
-
-
-
-
-
-
 
 
   const handleSelect = (selectedValue) => {
     setValue(selectedValue);
     setOpen(false);
-    if (onValueChange) {
-      onValueChange(selectedValue); // Call the callback with the selected value
+    const selectedUser = userData.find(user => user.value === selectedValue);
+    if (selectedUser) {
+      onValueChange(selectedUser); // Pass the entire user object
     }
   };
-
 
 
   return (
@@ -84,19 +79,19 @@ export function ProfileComboBox({onValueChange }) {
               className="w-full justify-between border-none shadow-sm"
             >
               {value
-                ? roleData.find((role) => role.value === value)
+                ? userData.find((role) => role.value === value)
                 ?.label
-                : "Select User Role..."}
+                : "Select Username..."}
               <ChevronsUpDown className="ml-2 h-4 w-4 shrink-0 opacity-50" />
             </Button>
           </PopoverTrigger>
           <PopoverContent className="min-w-full p-0">
             <Command>
-              <CommandInput placeholder="Search User Role..." />
+              <CommandInput placeholder="Search Useranme..." />
               <CommandList>
-                <CommandEmpty>No Role data found.</CommandEmpty>
+                <CommandEmpty>No usernames found.</CommandEmpty>
                 <CommandGroup>
-                  {roleData.map((role) => (
+                  {userData.map((role) => (
                     <CommandItem
                       key={role.value}
                       onSelect={() => {

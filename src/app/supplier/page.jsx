@@ -1,9 +1,11 @@
 "use client";
 
+import DashAuthPopup from "@/components/DashAuthPopup";
 import ProtectedRoute from "@/components/ProtectRoute";
 import SupTableEdit from "@/components/SupTableEdit";
 import TablePopup from "@/components/TablePopup";
 import React, { useEffect, useState } from "react";
+import { fetchAuth } from "@/src/app/api/dashAuthApi";
 
 
 
@@ -33,6 +35,28 @@ export default function Data() {
   const [popupData, setPopupData] = useState(null);
   //const [isLoading, setIsLoading] = useState(false)
 
+  //Acton auth
+  const [authData, setAuthData] = useState([]);
+  const [isAuthorized, setIsAuthorized] = useState(false);
+  const [popupMessage, setPopupMessage] = useState("");
+  const [openPopup, setOpenPopup] = useState(false);
+
+  useEffect(() => {
+    const checkAuthorization = async () => {
+        try {
+            const roleId = localStorage.getItem('UserRole');
+            const profId = 6;
+            const data = await fetchAuth(roleId, profId);
+            setAuthData(data);
+            const isActive = data.some(item => item.Is_Active);
+            setIsAuthorized(isActive);
+        } catch (error) {
+            console.error("Error fetching authorization data:", error);
+        }
+    };
+    checkAuthorization();
+}, []);
+
 
   // Fetch data when the component mounts
   useEffect(() => {
@@ -49,6 +73,16 @@ export default function Data() {
   
     const downloadImage = async (imageName) => {
       try {
+
+        if (!isAuthorized) {
+          setPopupMessage('You are not authorized to perform this action!');
+          setOpenPopup(true);
+          setTimeout(() => {
+              setPopupMessage(''); // Clear message after showing
+              setOpenPopup(false);
+            }, 2000); // Adjust timeout as needed
+          return;
+      }
         
         const response = await fetch(`/api/supfiledown?imageName=${imageName}`);
         if (!response.ok) {
@@ -216,6 +250,9 @@ export default function Data() {
             <TablePopup openPopup={addPopup} closePopup={setAddPopup} data={popupData} />        
         </div>
     </div>
+    {openPopup && (
+                <DashAuthPopup openPopup={openPopup} closePopup={setOpenPopup} data={popupMessage} />
+            )}
     </div>
     </ProtectedRoute>
     

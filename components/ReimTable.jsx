@@ -6,9 +6,17 @@ import { reimData } from "@/src/app/api/reimData";
 import { ArrowDownToLine } from "lucide-react";
 import jsPDF from 'jspdf';
 import 'jspdf-autotable';
+import { fetchAuth } from "@/src/app/api/dashAuthApi";
+import DashAuthPopup from "./DashAuthPopup";
 
 const ReimTable = () => {
     const [data, setData] = useState([]);
+
+    const [authData, setAuthData] = useState([]);
+    const [isAuthorized, setIsAuthorized] = useState(false);
+    const [openPopup, setOpenPopup] = useState(false);
+    const [popupMessage, setPopupMessage] = useState("");
+
 
     // Fetch data when the component mounts
     useEffect(() => {
@@ -23,6 +31,23 @@ const ReimTable = () => {
         fetchDataAndSetData();
     }, []);
 
+    //Action auth
+    useEffect(() => {
+        const checkAuthorization = async () => {
+            try {
+                const roleId = localStorage.getItem('UserRole');
+                const profId = 9;
+                const data = await fetchAuth(roleId, profId);
+                setAuthData(data);
+                const isActive = data.some(item => item.Is_Active);
+                setIsAuthorized(isActive);
+            } catch (error) {
+                console.error("Error fetching authorization data:", error);
+            }
+        };
+        checkAuthorization();
+    }, []);
+
     // const downloadExcel = () => {
     //     // Get the table element
     //     const table = document.getElementById('ReimT01'); // Replace with your table ID
@@ -33,6 +58,17 @@ const ReimTable = () => {
     //   };
 
     const downloadPDF = () => {
+
+        if (!isAuthorized) {
+            setPopupMessage('You are not authorized to perform this action!');
+            setOpenPopup(true);
+            setTimeout(() => {
+                setPopupMessage(''); // Clear message after showing
+                setOpenPopup(false);
+              }, 2000); // Adjust timeout as needed
+            return;
+        }
+
         const doc = new jsPDF();
         const heading = 'Reimbursemenet Table'
     
@@ -110,6 +146,9 @@ const ReimTable = () => {
                         </table>
                         
                     </div>
+                    {openPopup && (
+                <DashAuthPopup openPopup={openPopup} closePopup={setOpenPopup} data={popupMessage} />
+            )}
                 </div>
                 
             

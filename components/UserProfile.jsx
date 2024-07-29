@@ -137,7 +137,8 @@ const UserProfile = () => {
         }
 
       } else {
-        setError('Profile update failed!');
+        // setError('Profile update failed!');
+        setError(result.Message);
       }
     } catch (error) {
       setError('An error occurred. Please try again.');
@@ -167,7 +168,7 @@ const UserProfile = () => {
                           name="User Role"
                           type="text"
                           placeholder={selectedValue !== "0" ? '': 'Enter New User Role'}
-                          className="shadow-sm rounded-lg p-2 w-full focus:outline-indigo-500"
+                          className={`rounded-lg p-2 w-full focus:outline-indigo-500 ${selectedValue !== "0" ? 'bg-transparent' : 'shadow-sm'}`}
                           disabled={selectedValue !== "0"}
                           value={userRole}
                           onChange={handleUserRole}

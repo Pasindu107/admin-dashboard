@@ -1,9 +1,11 @@
 "use client";
 
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { Input } from "@/components/ui/input";
 import { ReimComboBox } from '@/components/ReimComboBox';
 import ReimDatePicker from './ReimDatePicker';
+import DashAuthPopup from './DashAuthPopup';
+import { fetchAuth } from "@/src/app/api/dashAuthApi";
 
 export default function ReimFileUpload() {
   const [file, setFile] = useState(null);
@@ -13,6 +15,30 @@ export default function ReimFileUpload() {
   const [description, setDescription] = useState('');
   const [message, setMessage] = useState('');
   const [isLoading, setIsLoading] = useState(false);
+
+
+  const [authData, setAuthData] = useState([]);
+  const [isAuthorized, setIsAuthorized] = useState(false);
+  const [popupMessage, setPopupMessage] = useState("");
+  const [openPopup, setOpenPopup] = useState(false);
+
+
+  useEffect(() => {
+    const checkAuthorization = async () => {
+        try {
+            const roleId = localStorage.getItem('UserRole');
+            const profId = 11;
+            const data = await fetchAuth(roleId, profId);
+            setAuthData(data);
+            const isActive = data.some(item => item.Is_Active);
+            setIsAuthorized(isActive);
+        } catch (error) {
+            console.error("Error fetching authorization data:", error);
+        }
+    };
+    checkAuthorization();
+}, []);
+
 
   const handleFileChange = (e) => {
     setFile(e.target.files[0]);
@@ -40,6 +66,17 @@ export default function ReimFileUpload() {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+
+    if (!isAuthorized) {
+      setPopupMessage('You are not authorized to perform this action!');
+      setOpenPopup(true);
+      setTimeout(() => {
+          setPopupMessage(''); // Clear message after showing
+          setOpenPopup(false);
+        }, 2000); // Adjust timeout as needed
+      return;
+  }
+
 
     if (!file || !selectedDate || !description || !selectedSupCode || !selectedEmail) {
       alert("Please fill in all fields");
@@ -161,6 +198,9 @@ export default function ReimFileUpload() {
 
         </div>
       </form>
+      {openPopup && (
+                <DashAuthPopup openPopup={openPopup} closePopup={setOpenPopup} data={popupMessage} />
+            )}
     </div>
   );
 }

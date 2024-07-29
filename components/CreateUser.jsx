@@ -1,9 +1,10 @@
 "use client";
 
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useRouter } from 'next/navigation';
 import { SignupComboBox } from './SignupComboBox';
 import { Eye, EyeOff } from 'lucide-react';
+import { UserNameComboBox } from './UserNameComboBox';
 
 const CreateUser = () => {
   const router = useRouter();
@@ -11,10 +12,21 @@ const CreateUser = () => {
   const [password, setPassword] = useState('');
   const [email, setEmail] = useState('');
   const [selectedValue, setSelectedValue] = useState(null);
-  const [message, setMessage] = useState();
+  const [message, setMessage] = useState('');
   const [showPassword, setShowPassword] = useState(false);
-
+  const [selectedUserName, setSelectedUserName] = useState(null);
   const [error, setError] = useState(null);
+
+  // Update password based on selectedUserName
+  useEffect(() => {
+    if (selectedUserName !== null) {
+      setPassword(selectedUserName !== "Create" ? '#####' : '');
+    }
+  }, [selectedUserName]);
+
+  const handleValueChange = (value) => {
+    setSelectedValue(value);
+  };
 
   const handleUserName = (e) => {
     setUserName(e.target.value);
@@ -28,8 +40,14 @@ const CreateUser = () => {
     setEmail(e.target.value);
   };
 
-  const handleValueChange = (value) => {
-    setSelectedValue(value);
+  const handleUnameChange = (user) => {
+    setMessage('')
+    setError('')
+    setSelectedUserName(user.value);
+    setUserName(user.username || '');
+    setEmail(user.email || '');
+    setSelectedValue(user.role || null);
+    // Password will be handled by `useEffect`
   };
 
   const handleSubmit = async (e) => {
@@ -38,7 +56,8 @@ const CreateUser = () => {
     setError('');
 
     const signupData = {
-      userName: userName,
+      New : selectedUserName !== "Create" ? 0 : 1,
+      userName: selectedUserName !== "Create" ? selectedUserName : userName,
       userPassword: password,
       Email: email,
       RoleId: selectedValue,
@@ -60,11 +79,12 @@ const CreateUser = () => {
 
       const result = await response.json();
       if (result.Success) {
-        console.log('Signup successful');
-        setMessage('Signup successful');
-
-        // Redirect or navigate to another page upon successful signup if needed
-        // router.push('/login');
+        if (selectedUserName !== "Create") {
+          setMessage('Profile Updated successfully!');
+        } else {
+          window.location.reload();
+          setMessage('New User Created!');
+        }
       } else {
         setError('Signup failed. Please check your credentials.');
       }
@@ -82,16 +102,9 @@ const CreateUser = () => {
     <form onSubmit={handleSubmit} className="bg-white bg-opacity-70 bg-transparent rounded-lg p-4 h-full">
       <div className="px-4 py-3 space-y-6 h-full">
         <div className="py-2 px-3 bg-indigo-50 rounded-lg text-gray-500">Create User</div>
+
         <div className="w-full pt-10">
-          <input
-            id="username"
-            name="userName"
-            type="text"
-            placeholder="Username"
-            className="shadow-sm rounded-lg p-2 w-full focus:outline-indigo-500"
-            value={userName}
-            onChange={handleUserName}
-          />
+          <UserNameComboBox onValueChange={handleUnameChange} />
         </div>
 
         <div className="w-full">
@@ -100,9 +113,23 @@ const CreateUser = () => {
             name="Email"
             type="text"
             placeholder="Email"
-            className="shadow-sm rounded-lg p-2 w-full focus:outline-indigo-500"
+              className={`shadow-sm rounded-lg p-2 w-full focus:outline-indigo-500 ${selectedUserName !== "Create" ? 'bg-white' : ''}`}
+            disabled={selectedUserName !== "Create"}
             value={email}
             onChange={handleEmail}
+          />
+        </div>
+
+        <div className="w-full">
+          <input
+            id="username"
+            name="userName"
+            type="text"
+            placeholder={selectedUserName !== "Create" ? '' : 'Enter Username'}
+            className={`rounded-lg p-2 w-full focus:outline-indigo-500 ${selectedUserName !== "Create" ? 'bg-transparent' : 'shadow-sm'}`}
+            disabled={selectedUserName !== "Create"}
+            value={userName}
+            onChange={handleUserName}
           />
         </div>
 
@@ -126,7 +153,7 @@ const CreateUser = () => {
         </div>
 
         <div className="pb-16">
-          <SignupComboBox onValueChange={handleValueChange} />
+          <SignupComboBox onValueChange={handleValueChange} selectedValue={selectedValue} />
         </div>
 
         {error && (
@@ -140,7 +167,7 @@ const CreateUser = () => {
         <div className="">
           <div className="flex flex-col gap-2 col-span-2 lg:col-span-4">
             <button type="submit" className="rounded bg-indigo-500 px-4 py-2 hover:bg-indigo-600 text-white">
-              Signup
+              {selectedUserName !== "Create" ? 'Update' : 'Create'}
             </button>
           </div>
         </div>

@@ -1,6 +1,6 @@
 'use client'
 
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 
 import { Button } from "@/components/ui/button"
 import {
@@ -21,6 +21,9 @@ import { IoPersonAddOutline } from "react-icons/io5";
 import Badge from '@mui/material/Badge';
 import { styled } from '@mui/material/styles';
 
+import { fetchAuth } from "@/src/app/api/dashAuthApi";
+import DashAuthPopup from './DashAuthPopup'
+
 
 const StyledBadge = styled(Badge)(() => ({
   '& .MuiBadge-badge': {
@@ -37,6 +40,36 @@ const StyledBadge = styled(Badge)(() => ({
 const SupTableEdit = (props) => {
     const { email, SupCode, ResetRequest } = props; 
 
+    //Action auth
+    const [authData, setAuthData] = useState([]);
+    const [isAuthorized, setIsAuthorized] = useState(false);
+    const [popupMessage, setPopupMessage] = useState("");
+    const [openPopup, setOpenPopup] = useState(false);
+    const [profileId, setProfileId ] = useState('')
+
+
+    useEffect(() => {
+      setProfileId(SupCode && SupCode.trim() !== '' ? 5 : 4);
+    }, [SupCode]);
+  
+    useEffect(() => {
+      const checkAuthorization = async () => {
+        try {
+          const roleId = localStorage.getItem('UserRole');
+          const profId = profileId;
+          const data = await fetchAuth(roleId, profId);
+          setAuthData(data);
+          const isActive = data.some(item => item.Is_Active);
+          setIsAuthorized(isActive);
+        } catch (error) {
+          console.error("Error fetching authorization data:", error);
+        }
+      };
+      if (profileId) {
+        checkAuthorization();
+      }
+    }, [profileId]);
+    
 
       // State to manage form inputs
   const [formData, setFormData] = useState({
@@ -55,16 +88,26 @@ const SupTableEdit = (props) => {
     setFormData({ ...formData, [name]: value });
   };
 
+
+  // Handle dialog trigger
+  const handleDialogTrigger = (e) => {
+    if (!isAuthorized) {
+          e.preventDefault();
+          setPopupMessage('You are not authorized to perform this action!');
+          setOpenPopup(true);
+          setTimeout(() => {
+            setPopupMessage(''); // Clear message after showing
+            setOpenPopup(false);
+          }, 2000); // Adjust timeout as needed
+    } else {
+          setDialogOpen(true);
+  }
+};
+
   // Handle form submission
   const handleSubmit = async (e) => {
     e.preventDefault();
     setMessage('');
-
-    // Validate email format
-const isValidEmail = (email) => {
-  return /\S+@\S+\.\S+/.test(email);
-};
-
 
     try {
       const response = await fetch('http://localhost:8000/login/reguser', {
@@ -94,13 +137,18 @@ const isValidEmail = (email) => {
         <Dialog open={dialogOpen} onOpenChange={setDialogOpen}>
         <DialogTrigger asChild>
 
-        <Button variant="secondary" className={` rounded-full w-8 h-8 transition ease-in-out hover:-translate-y-px hover:scale-105 duration-300  ${SupCode && SupCode.trim() !== '' ? "bg-green-200 hover:bg-green-400" : "bg-red-200 hover:bg-red-400"}`} >
+        <Button variant="secondary" 
+                className={` rounded-full w-8 h-8 transition ease-in-out hover:-translate-y-px hover:scale-105 duration-300  ${SupCode && SupCode.trim() !== '' ? "bg-green-200 hover:bg-green-400" : "bg-red-200 hover:bg-red-400"}`} 
+                onClick={handleDialogTrigger}
+                >
           {SupCode && SupCode.trim() !== '' ? (   
                                  ResetRequest === 1 ? (
+                                 
                                    <StyledBadge badgeContent="1" color="error">
                                       <Pencil  className='size-3 ' />
                                    </StyledBadge>
                                  ) : (
+                                 
                                   <div>
                                       <Pencil className='size-3 ' />
                                   </div>
@@ -135,7 +183,7 @@ const isValidEmail = (email) => {
             <Label className="text-right">
                Email
             </Label>
-            <Label value={formData.Email} className="text-gray-500">{email}</Label>
+            <div value={formData.Email} className="text-gray-500">{email}</div>
           </div>
           <div className="grid grid-cols-4 items-center gap-4">
             <Label className="text-right">
@@ -189,6 +237,10 @@ const isValidEmail = (email) => {
         </form>
       </DialogContent>
     </Dialog>
+    {openPopup && (
+                <DashAuthPopup openPopup={openPopup} closePopup={setOpenPopup} data={popupMessage} />
+            )}
+
     </div>
   )
 }

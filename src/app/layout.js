@@ -5,6 +5,7 @@ import ProtectedRoute from "@/components/ProtectRoute";
 import { AuthProvider } from "@/context/AuthContext";
 
 
+
 const inter = Inter({ subsets: ["latin"] });
 
 export const metadata = {
@@ -19,7 +20,10 @@ export default function RootLayout({ children }) {
       <body className={`${inter.className} ` }>    
       <ProtectedRoute>
         <AuthProvider>        
-            <ClientLayout>{children}</ClientLayout>
+            <ClientLayout>
+              {children}
+            
+            </ClientLayout>
         </AuthProvider> 
       </ProtectedRoute>
       </body>

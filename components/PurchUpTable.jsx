@@ -34,7 +34,7 @@ const PurchUpTable = () => {
         const checkAuthorization = async () => {
             try {
                 const roleId = localStorage.getItem('UserRole');
-                const profId = 4;
+                const profId = 9;
                 const data = await fetchAuth(roleId, profId);
                 setAuthData(data);
                 const isActive = data.some(item => item.Is_Active);
