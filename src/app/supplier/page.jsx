@@ -6,6 +6,7 @@ import SupTableEdit from "@/components/SupTableEdit";
 import TablePopup from "@/components/TablePopup";
 import React, { useEffect, useState } from "react";
 import { fetchAuth } from "@/src/app/api/dashAuthApi";
+import PayReceivedPopup from "@/components/SupPayReceivedPopup";
 
 
 
@@ -34,6 +35,8 @@ export default function Data() {
   const [addPopup, setAddPopup] = useState(false);
   const [popupData, setPopupData] = useState(null);
   //const [isLoading, setIsLoading] = useState(false)
+  const [isLoading, setIsLoading] = useState(false);
+  const [payReceivedPopup, setPayReceivedPopup] = useState(false)
 
   //Acton auth
   const [authData, setAuthData] = useState([]);
@@ -78,16 +81,21 @@ export default function Data() {
           setPopupMessage('You are not authorized to perform this action!');
           setOpenPopup(true);
           setTimeout(() => {
-              setPopupMessage(''); // Clear message after showing
+              setPopupMessage('');
               setOpenPopup(false);
-            }, 2000); // Adjust timeout as needed
+            }, 2000); // Adjust timeout
           return;
       }
-        
+
+        setIsLoading(true); //download image loading
+
         const response = await fetch(`/api/supfiledown?imageName=${imageName}`);
+
         if (!response.ok) {
           throw new Error(`Error downloading image: ${response.statusText}`);
-        }      
+        }    
+        
+
         const blob = await response.blob();
         const url = window.URL.createObjectURL(blob);
         const a = document.createElement('a');
@@ -105,7 +113,9 @@ export default function Data() {
           alert(`An error occurred: ${error.message}`);
         }
         setDownloadError(error.message);
-      }  
+      }  finally {
+        setIsLoading(false);
+      }
     }
 
 
@@ -188,20 +198,20 @@ export default function Data() {
         downloadImage(item.BankInfor)
         
         break;
-      case "InsertDate":
-        responseMessage = `Insert Date is: ${item.InsertDate}`;
+      case "PaymentReceived":
+        setPopupData(item[fieldName]);
+        setPayReceivedPopup(true);
         break;
       default:
         responseMessage = `Clicked on: ${fieldName}`;
         setPopupData(null); // Clear the data if popup is closed
-        setAddPopup(false); // Close the popup for all other cell clicks
+        setAddPopup(false);
+        setPayReceivedPopup(false); 
         
     }
 
     
   };
-
-
 
   // Render fetched data in a table
   return (
@@ -235,7 +245,10 @@ export default function Data() {
                   ${fieldName === "BankInfor" ? `hover:text-blue-500 hover:underline cursor-pointer` : ""}`}
                   onClick={() => handleCellClick(item, fieldName)}
                 >
-                  {item[fieldName]}
+                  {fieldName === "PaymentReceived" 
+                  ? <PayReceivedPopup PayRe={item.PaymentReceived} email={item.PrimaryEmailAddress} /> 
+                   : item[fieldName]}
+                  
                 </td>)
               ))}
               <td className="pr-3 sticky right-0 " >
@@ -246,12 +259,21 @@ export default function Data() {
           ))}
         </tbody>        
       </table>      
+        {/* <div>
+            <PayReceivedPopup openPopup={payReceivedPopup} closePopup={setPayReceivedPopup} data={popupData} />        
+        </div> */}
+
+
         <div>
             <TablePopup openPopup={addPopup} closePopup={setAddPopup} data={popupData} />        
         </div>
-    </div>
-    {openPopup && (
-                <DashAuthPopup openPopup={openPopup} closePopup={setOpenPopup} data={popupMessage} />
+
+        </div>
+        {openPopup && (
+                    <DashAuthPopup openPopup={openPopup} closePopup={setOpenPopup} data={popupMessage} />
+                )}
+          {isLoading && (
+                <DashAuthPopup openPopup={isLoading} closePopup={() => setIsLoading(false)} data={"Downloading...."} />
             )}
     </div>
     </ProtectedRoute>

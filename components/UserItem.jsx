@@ -45,7 +45,7 @@ const UserItem = () => {
         <DropdownMenuContent>
           <DropdownMenuLabel>My Account</DropdownMenuLabel>
           <DropdownMenuSeparator />
-          <DropdownMenuItem className='cursor-pointer hover:bg-slate-100'><Link href={'/profile'}>Profile</Link></DropdownMenuItem>
+          {/* <DropdownMenuItem className='cursor-pointer hover:bg-slate-100'><Link href={'/profile'}>Profile</Link></DropdownMenuItem> */}
           <DropdownMenuItem className='cursor-pointer hover:bg-slate-100'><LogOut /></DropdownMenuItem>
         </DropdownMenuContent>
       </DropdownMenu>
