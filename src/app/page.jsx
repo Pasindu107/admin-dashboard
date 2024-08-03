@@ -14,13 +14,14 @@ import { PieChart1 } from '@/components/PieChart1'
 //import LogOut from '@/components/LogOut'
 
 import ProtectedRoute from '@/components/ProtectRoute'
+import { RadialChart } from '@/components/RadialChart'
 import React from 'react'
 
 const page = () => {
   return (
     <ProtectedRoute>
     <div className='space-y-2'>
-      <div className='grid grid-cols-2 lg:grid-cols-4 md:grid-cols-4 sm:grid-cols-2 gap-2'>
+      <div className='grid grid-cols-1 lg:grid-cols-3 md:grid-cols-3 sm:grid-cols-1 gap-2'>
         <div className='bg-white rounded-lg p-4'>
           <DashSupRegPercentage />
         </div>
@@ -30,13 +31,13 @@ const page = () => {
         <div className='bg-white rounded-lg p-4'>
           card 3
         </div>
-        <div className='bg-white rounded-lg p-4'>
+        {/* <div className='bg-white rounded-lg p-4'>
           card 3
-        </div>
+        </div> */}
       </div>
 
 
-    <div className='grid grid-rows-2 grid-cols-1 lg:grid-cols-3 sm:grid-cols-1 gap-2'>
+    <div className='grid grid-cols-1 lg:grid-cols-3 sm:grid-cols-1 gap-2'>
 
           <div className=''>
             
@@ -44,6 +45,9 @@ const page = () => {
           </div>
           <div className=''>
             <PieChart1 />
+          </div> 
+          <div className=''>
+            <RadialChart />
           </div> 
 
 

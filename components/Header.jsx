@@ -9,7 +9,7 @@ import MobileSidebar from './MobileSidebar';
 import HeaderTitle from './HeaderTitle';
 
 
-const Header = ({ headerText }) => {
+const Header = () => {
   const [menuOpen, setMenuOpen] = useState(false);
   const sidebarRef = useRef(null);
 

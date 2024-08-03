@@ -6,6 +6,8 @@ import React, { useEffect, useState } from 'react';
 const DashSupRegPercentage = () => {
     const [data, setData] = useState(null);
     const [pendingPayment, setPendingPayment] = useState(0);
+    const [renewedToday, setRenewedToday] = useState(0);
+    const [toBeRenewedToday, setToBeRenewedToday] = useState(0);
     const [error, setError] = useState(null);
 
     useEffect(() => {
@@ -18,8 +20,13 @@ const DashSupRegPercentage = () => {
                     setData(response);
                     // Access the first item in the array
                     const firstItem = response[0];
-                    if (firstItem.PendingPayment !== undefined) {
+                    if (firstItem.PendingPayment !== undefined || firstItem.RenewedToday!== undefined || firstItem.ToBeRenewedToday!== undefined )
+                   {
                         setPendingPayment(firstItem.PendingPayment);
+                        setRenewedToday(firstItem.RenewedToday);
+                        setToBeRenewedToday(firstItem.ToBeRenewedToday);
+            
+                    
                     } else {
                         console.error("PendingPayment not found in the first item of response:", firstItem);
                         setError("Failed to fetch data: PendingPayment not found in response");
@@ -38,8 +45,38 @@ const DashSupRegPercentage = () => {
     }, []);
 
     return (
-        <div className='flex justify-between'>
-            {error ? <div>{error}</div> : <div>{pendingPayment}</div>}
+        <div className='space-y-2'>
+            <div className='flex justify-between'>
+                <div className='text-sm content-center '>Pending payments</div>
+                {error ? (
+                    <p>{error}</p>
+                ) : data ? (
+                    <p className='bg-indigo-500 rounded-xl text-white p-3 content-center'>{pendingPayment}</p>
+                ) : (
+                    <p>Loading...</p>
+                )}
+            </div>
+            <div className='flex justify-between'>
+
+                <div className='text-sm content-center '>Renewed Today</div>
+                {error ? (
+                    <p>{error}</p>
+                ) : data ? (
+                    <p className='bg-indigo-500 rounded-xl text-white p-3 content-center'>{renewedToday}</p>
+                ) : (
+                    <p>Loading...</p>
+                )}
+            </div>
+            <div className='flex justify-between'>
+                <div className='text-sm content-center '>To Be Renewed Today</div>
+                {error ? (
+                    <p>{error}</p>
+                ) : data ? (
+                    <p className='bg-indigo-500 rounded-xl text-white p-3 content-center'>{toBeRenewedToday}</p>
+                ) : (
+                    <p>Loading...</p>
+                )}
+            </div>
         </div>
     );
 }
