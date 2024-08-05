@@ -2,11 +2,17 @@
 
 import { dashData } from '@/src/app/api/dashData';
 import React, { useEffect, useState } from 'react';
+import { RadialChart } from './RadialChart';
+
+
 
 const DashSupRegPercentage = () => {
     const [data, setData] = useState(null);
     const [percentage, setPercentage] = useState(0);
     const [error, setError] = useState(null);
+
+
+
 
     useEffect(() => {
         async function fetchData() {
@@ -36,15 +42,19 @@ const DashSupRegPercentage = () => {
     }, []);
 
     return (
-        <div className='flex justify-between'>
-            <div className='text-sm content-center'>Registered Suppliers</div>
-            {error ? (
-                <p>{error}</p>
-            ) : data ? (
-                <p className='bg-indigo-500 rounded-xl text-white p-3 content-center'>{percentage}%</p>
-            ) : (
-                <p>Loading...</p>
-            )}
+        <div className='space-y-8'>
+            <div className='flex justify-between'>
+                <div className='text-sm content-center'>Registered Suppliers</div>
+                {error ? (
+                    <p>{error}</p>
+                ) : data ? (
+                    <p className='text-3xl'>{percentage}%</p>
+                ) : (
+                    <p>Loading...</p>
+                )}
+            </div>
+            {/* <RadialChart /> */}
+ 
         </div>
     );
 }

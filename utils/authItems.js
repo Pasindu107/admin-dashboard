@@ -16,6 +16,7 @@ const items = [
         { id: "4", label: "Add" },
         { id: "5", label: "Edit" },
         { id: "6", label: "Download Image" },
+        { id: "14", label: "Payments Handle"}
       ],
     },
     { 

@@ -22,7 +22,7 @@ export default function PurchFileUpload() {
 
 
   useEffect(() => {
-    console.log('gggggggggggggggggggggggggggggggggg')
+    // console.log('gggggggggggggggggggggggggggggggggg')
     const checkAuthorization = async () => {
         try {
             const roleId = localStorage.getItem('UserRole');

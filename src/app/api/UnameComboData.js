@@ -16,7 +16,7 @@ export const fetchUsername = async () => {
         throw new Error("Failed to fetch suppliers");
       }
       const data = await response.json();
-      console.log("data :", data)
+      // console.log("data :", data)
 
 
 

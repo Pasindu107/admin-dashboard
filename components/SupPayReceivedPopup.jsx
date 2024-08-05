@@ -33,23 +33,22 @@ const SupTableEdit = (props) => {
     const [dialogOpen, setDialogOpen] = useState(false)
 
 
-    // useEffect(() => {
-    //   const checkAuthorization = async () => {
-    //     try {
-    //       const roleId = localStorage.getItem('UserRole');
-    //       const profId = 14;
-    //       const data = await fetchAuth(roleId, profId);
-    //       setAuthData(data);
-    //       const isActive = data.some(item => item.Is_Active);
-    //       setIsAuthorized(isActive);
-    //     } catch (error) {
-    //       console.error("Error fetching authorization data:", error);
-    //     }
-    //   };
-    //   if (profileId) {
-    //     checkAuthorization();
-    //   }
-    // }, []);
+    useEffect(() => {
+      const checkAuthorization = async () => {
+        try {
+          const roleId = localStorage.getItem('UserRole');
+          const profId = 14;
+          const data = await fetchAuth(roleId, profId);
+          setAuthData(data);
+          const isActive = data.some(item => item.Is_Active);
+          setIsAuthorized(isActive);
+        } catch (error) {
+          console.error("Error fetching authorization data:", error);
+        }
+      };
+        checkAuthorization();
+ 
+    }, []);
 
     useEffect(() => {
         if (!dialogOpen) {
@@ -67,15 +66,15 @@ const SupTableEdit = (props) => {
 
     // Handle dialog trigger
     const handleDialogTrigger = (e) => {
-        // if (!isAuthorized) {
-        //       e.preventDefault();
-        //       setPopupMessage('You are not authorized to perform this action!');
-        //       setOpenPopup(true);
-        //       setTimeout(() => {
-        //         setPopupMessage(''); // Clear message after showing
-        //         setOpenPopup(false);
-        //       }, 2000); // Adjust timeout as needed
-        // } else
+        if (!isAuthorized) {
+              e.preventDefault();
+              setPopupMessage('You are not authorized to perform this action!');
+              setOpenPopup(true);
+              setTimeout(() => {
+                setPopupMessage(''); // Clear message after showing
+                setOpenPopup(false);
+              }, 2000); // Adjust timeout as needed
+        } else
         {
             setDialogOpen(true);
         }
@@ -125,16 +124,16 @@ const SupTableEdit = (props) => {
             <Dialog open={dialogOpen} onOpenChange={setDialogOpen}>
                 <DialogTrigger asChild>
                     <Button variant="secondary" 
-                            className={` rounded-xl w-13 h-6 transition ease-in-out hover:-translate-y-px hover:scale-105 duration-300
-                            ${PayRe && PayRe !== 0 ? "bg-green-400 hover:bg-green-600" : "bg-red-400 hover:bg-red-600"}`} 
+                            className={` rounded-lg w-13 h-6 transition ease-in-out hover:-translate-y-px hover:scale-105 duration-300
+                            ${PayRe && PayRe !== 0 ? "bg-green-50 hover:bg-green-200" : "bg-red-50 hover:bg-red-200"}`} 
                             onClick={handleDialogTrigger}>
                         {PayRe && PayRe !== 0 ? (   
                             <div className='inline-flex'>     
-                                <div className='text-[11px] font-thin text-white'>Received</div>  
+                                <div className='text-[11px] font-thin text-green-500'>Received</div>  
                             </div>
                         ) : (
                             <div className='inline-flex'>                             
-                                <div className='text-[11px] font-thin text-white'>Pending</div>  
+                                <div className='text-[11px] font-thin text-red-500'>Pending</div>  
                             </div>
                         )}
                     </Button>

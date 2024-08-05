@@ -49,14 +49,16 @@ export function LineChart1() {
   }, [])
 
   return (
-    <Card className="h-full border-none">
+    <Card className="border-none h-full">
       <CardHeader>
         <CardTitle className="text-gray-400 text-xl font-normal">Supplier Registration</CardTitle>
         <CardDescription> </CardDescription>
       </CardHeader>
-      <CardContent>
-        <ChartContainer config={chartConfig}>
+      <CardContent className="">
+        <ChartContainer config={chartConfig} className="">
           <LineChart
+            // width={800}
+            // height={400}
             accessibilityLayer
             data={data}
             margin={{

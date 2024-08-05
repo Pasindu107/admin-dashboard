@@ -2,6 +2,9 @@
 
 import { dashData } from '@/src/app/api/dashData';
 import React, { useEffect, useState } from 'react';
+import { MdPendingActions } from "react-icons/md";
+import { FaRegCalendarCheck } from "react-icons/fa";
+import { RiCalendarScheduleLine } from "react-icons/ri";
 
 const DashSupRegPercentage = () => {
     const [data, setData] = useState(null);
@@ -45,37 +48,52 @@ const DashSupRegPercentage = () => {
     }, []);
 
     return (
-        <div className='space-y-2'>
-            <div className='flex justify-between'>
-                <div className='text-sm content-center '>Pending payments</div>
-                {error ? (
-                    <p>{error}</p>
-                ) : data ? (
-                    <p className='bg-indigo-500 rounded-xl text-white p-3 content-center'>{pendingPayment}</p>
-                ) : (
-                    <p>Loading...</p>
-                )}
-            </div>
-            <div className='flex justify-between'>
+        <div className='grid grid-cols-1 lg:grid-cols-3 md:grid-cols-1 sm:grid-cols-1 gap-2'>
+            <div className='flex justify-between bg-white p-4 rounded-xl'>                
+                    <div className='flex gap-4 text-sm'>
+                        <div className='bg-red-50 p-4 rounded-xl'>
+                            <MdPendingActions className='h-7 w-7 text-red-400' />
+                        </div>
 
-                <div className='text-sm content-center '>Renewed Today</div>
-                {error ? (
-                    <p>{error}</p>
-                ) : data ? (
-                    <p className='bg-indigo-500 rounded-xl text-white p-3 content-center'>{renewedToday}</p>
-                ) : (
-                    <p>Loading...</p>
-                )}
+                        <div className='content-center text-gray-500'>
+                            Pending payments
+                        </div>                        
+
+                    </div>
+                    <p className='bg-red-50 text-red-500 rounded-xl p-3 content-center'>
+                        {pendingPayment}
+                    </p>
             </div>
-            <div className='flex justify-between'>
-                <div className='text-sm content-center '>To Be Renewed Today</div>
-                {error ? (
-                    <p>{error}</p>
-                ) : data ? (
-                    <p className='bg-indigo-500 rounded-xl text-white p-3 content-center'>{toBeRenewedToday}</p>
-                ) : (
-                    <p>Loading...</p>
-                )}
+
+
+            <div className='flex justify-between bg-white p-4 rounded-xl'>
+                <div className='flex gap-4 text-sm'>
+                    <div className='bg-green-50 p-4 rounded-xl'>
+                        <FaRegCalendarCheck  className='h-7 w-7 text-green-400' />
+                    </div>
+
+                    <div className='text-sm content-center text-gray-500'>
+                        Renewed Today
+                    </div>
+                </div>
+
+                <p className='bg-green-50 rounded-xl text-green-500 p-3 content-center'>{renewedToday}</p>
+
+            </div>
+            
+            <div className='flex justify-between bg-white p-4 rounded-xl'>
+                <div className='flex gap-4 text-sm'>
+                    <div className='bg-blue-50 p-4 rounded-xl'>
+                        <RiCalendarScheduleLine  className='h-7 w-7 text-blue-400' />
+                    </div>
+
+                    <div className='text-sm content-center text-gray-500'>
+                        To Renew Today
+                    </div>
+                </div>
+
+                <p className='bg-blue-50 rounded-xl text-blue-500 p-3 content-center'>{toBeRenewedToday}</p>
+
             </div>
         </div>
     );
