@@ -21,16 +21,16 @@ const page = () => {
   return (
     <ProtectedRoute>
     <div className='space-y-2'>
-      <div className='grid grid-cols-1 lg:grid-cols-3 md:grid-cols-3 sm:grid-cols-1 gap-2'>
+      <div className='grid grid-cols-1 lg:grid-cols-2 md:grid-cols-2 sm:grid-cols-1 gap-2'>
         <div className='bg-white rounded-lg p-4'>
           <DashSupRegPercentage />
         </div>
         <div className='bg-white rounded-lg p-4'>
           <DashPaymentCard />
         </div>
-        <div className='bg-white rounded-lg p-4'>
+        {/* <div className='bg-white rounded-lg p-4'>
           card 3
-        </div>
+        </div> */}
         {/* <div className='bg-white rounded-lg p-4'>
           card 3
         </div> */}
