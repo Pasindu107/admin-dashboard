@@ -42,7 +42,7 @@ const Header = () => {
       </div>
       <div ref={sidebarRef} className={
         menuOpen
-          ? "fixed  left-0 top-0 w-[65%] h-screen bg-indigo-500 text-white p-4 ease-in-out duration-300 z-50"
+          ? "fixed  left-0 top-0 w-[65%] sm:w-[40%] md:w-[40%] lg:w-[20%] xl:w-[20%] h-screen bg-indigo-500 text-white p-4 ease-in-out duration-300 z-50"
           : "fixed left-[-100%] top-0 p-10 ease-out duration-300 h-full z-50"
       }>
 

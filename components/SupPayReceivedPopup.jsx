@@ -129,11 +129,11 @@ const SupTableEdit = (props) => {
                             onClick={handleDialogTrigger}>
                         {PayRe && PayRe !== 0 ? (   
                             <div className='inline-flex'>     
-                                <div className='text-[11px] font-thin text-green-500'>Received</div>  
+                                <div className='text-[11px] text-green-500'>Received</div>  
                             </div>
                         ) : (
                             <div className='inline-flex'>                             
-                                <div className='text-[11px] font-thin text-red-500'>Pending</div>  
+                                <div className='text-[11px] text-red-500'>Pending</div>  
                             </div>
                         )}
                     </Button>

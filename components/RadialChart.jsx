@@ -36,7 +36,7 @@ export function RadialChart() {
       async function fetchData() {
           try {
               const response = await dashData();
-              console.log('API response:', response);
+              // console.log('API response:', response);
 
               if (response && response.length > 0) {
                   setData(response);
@@ -79,7 +79,7 @@ export function RadialChart() {
   return (
     <Card className="flex flex-col border-none ">
       <CardHeader className="items-center pb-0">
-        <CardTitle className="text-gray-400 font-normal text-lg">Registered Suppliers</CardTitle>
+        <CardTitle className="text-gray-500 font-normal text-lg">Suppliers</CardTitle>
         <CardDescription> </CardDescription>
       </CardHeader>
       <CardContent className="flex-1 pb-0">

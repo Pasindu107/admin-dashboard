@@ -64,6 +64,7 @@ export default function Data() {
   // Fetch data when the component mounts
   useEffect(() => {
     const fetchDataAndSetData = async () => {
+      
       const newData = await fetchData();
       setData(newData);
     };

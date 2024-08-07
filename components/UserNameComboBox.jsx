@@ -37,7 +37,6 @@ export function UserNameComboBox({onValueChange }) {
 
 
     React.useEffect(() => {
-    console.log("useEffect called");
     const fetchuserData = async () => {
       try {
         const UserData = await fetchUsername();

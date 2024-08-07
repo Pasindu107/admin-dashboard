@@ -18,9 +18,9 @@ console.log(file[0].originalFilename);
   const remoteFilePath = `${email}/` + file[0].originalFilename;
   try {
     await client.access({
-        host: "ftp.heptagonss.com",
-        user: "uploadheptagon",
-        password: "o5c219Px#",
+        host: process.env.FTP_HOST ,
+        user: process.env.FTP_USERNAME,
+        password: process.env.FTP_PASSWORD,
         secure: false,
     });
 

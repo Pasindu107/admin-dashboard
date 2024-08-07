@@ -87,9 +87,9 @@ export async function GET(req) {
     });
 
     client.connect({
-      host: 'ftp.heptagonss.com',
-      user: 'uploadheptagon',
-      password: 'o5c219Px#',
+      host: process.env.FTP_HOST ,
+      user: process.env.FTP_USERNAME,
+      password: process.env.FTP_PASSWORD,
     });
   });
 }

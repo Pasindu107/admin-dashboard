@@ -17,7 +17,7 @@ const DashSupRegPercentage = () => {
         async function fetchData() {
             try {
                 const response = await dashData();
-                console.log('API response:', response);
+                // console.log('API response:', response);
 
                 if (response && response.length > 0) {
                     setData(response);
