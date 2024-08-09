@@ -1,4 +1,4 @@
-import { HomeIcon, ListChecks, ReceiptText, Upload, User, Users } from 'lucide-react'; 
+import { BookCheck, HomeIcon, ListChecks, ReceiptText, Upload, User, Users } from 'lucide-react'; 
 
 
 const sidebarItems = [
@@ -32,6 +32,14 @@ const sidebarItems = [
     href: "/reimsummery",
     icon: Upload,
   },
+
+  {
+    id: 15,
+    name: "App Packages",
+    href: "/apppackages",
+    icon: BookCheck,
+  },
+
   {
     id: 13,
     name: "Profile",

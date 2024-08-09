@@ -23,6 +23,15 @@ import { styled } from '@mui/material/styles';
 
 import { fetchAuth } from "@/src/app/api/dashAuthApi";
 import DashAuthPopup from './DashAuthPopup'
+import { PackageComboBox } from './PackageComboBox'
+
+import {
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
+} from "@/components/ui/select"
 
 
 const StyledBadge = styled(Badge)(() => ({
@@ -78,6 +87,7 @@ const SupTableEdit = (props) => {
     supCode: SupCode ? SupCode.trim() : '',
     supVarify: !!SupCode && SupCode.trim() !== '' ? (1): (0),
     Email: email || '',
+    AppVersionId: ''
   });
   const [message, setMessage] = useState('');
   const [dialogOpen, setDialogOpen] = useState(false)
@@ -102,6 +112,10 @@ const SupTableEdit = (props) => {
     } else {
           setDialogOpen(true);
   }
+};
+
+const handlePackageSelect = (supCode) => {
+  setSelectedSupCode(supCode);
 };
 
   // Handle form submission
@@ -228,6 +242,25 @@ const SupTableEdit = (props) => {
               className="col-span-3"
             />
           </div>
+          <div className="grid grid-cols-4 items-center gap-4 pb-16">
+          <Label  className="text-right">
+             Package
+            </Label>
+          <div>
+          <Select onValueChange={(value) => setFormData({ ...formData, AppVersionId: value })} defaultValue={formData.AppVersionId}>
+            <SelectTrigger className="w-[180px]">
+              <SelectValue placeholder="Select Package" />
+            </SelectTrigger>
+            <SelectContent>
+              <SelectItem value="1">Basic</SelectItem>
+              <SelectItem value="2">Standard</SelectItem>
+              <SelectItem value="3">Premium</SelectItem>
+            </SelectContent>
+          </Select>
+          </div>
+
+          </div>
+
         </div>
         <DialogFooter>
         <Button type="submit" className="bg-indigo-500">Submit</Button>
